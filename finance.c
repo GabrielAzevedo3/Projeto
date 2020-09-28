@@ -28,7 +28,7 @@ void menuSobre (void) {
 	printf("///                                                                         ///\n");
 	printf("///       = = = =  Sistema de Controle de Finanças Domésticas = = = =       ///\n");
 	printf("///                                                                         ///\n");
-    printf("///  O controle de finanças domésticas é uma das atividades necessárias em  ///\n");
+	printf("///  O controle de finanças domésticas é uma das atividades necessárias em  ///\n");
   	printf("///  praticamente todas as residências, uma vez que para conseguir          ///\n");
 	printf("///  equilibrar o orçamento doméstico e evitar o acúmulo de dívidas, se faz ///\n");
 	printf("///  necessário monitorar entradas e saídas de recursos. Tal atividade pode ///\n");
