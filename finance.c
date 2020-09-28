@@ -17,10 +17,12 @@ void menuSobre (void) {
 	printf("///             Universidade Federal do Rio Grande do Norte                 ///\n");
 	printf("///                 Centro de Ensino Superior do Seridó                     ///\n");
 	printf("///               Departamento de Computação e Tecnologia                   ///\n");
-	printf("///                  Disciplina DCT1106 -- Programação                      ///\n");
+	printf("///                   Disciplina DCT1106 - Programação                      ///\n");
 	printf("///          Projeto Sistema de Controle de Financias Domésticas            ///\n");
-	printf("///                Developed by  @gabriel_azevedo3 - Sep, 2020              ///\n");
+	printf("///                Desenvolvido por Gabriel Azevedo dos Santos              ///\n");
 	printf("///                        gabrielazevedo492@gmail.com                      ///\n");
+	printf("///                             @gabriel_azevedo3                           ///\n");
+	printf("///                                   2020                                  ///\n");
 	printf("///                                                                         ///\n");
 	printf("///////////////////////////////////////////////////////////////////////////////\n");
 	printf("///                                                                         ///\n");
