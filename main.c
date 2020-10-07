@@ -1,21 +1,39 @@
 #include <stdio.h>
+#include "menus.h"
 
 int main (void) {
 
     char opcao;
-    while (opcao != 0) {
-        printf("\n\n");
-        printf(" $ $ $   Menu de Opções   $ $ $ \n\n");
-        printf(" $     1. MENU CLIENTES   $       \n");
-        printf(" $     2. MENU DESPESAS   $       \n");
-        printf(" $     3. RELATÓRIOS      $       \n");
-        printf(" $     4. SOBRE           $       \n");
-        printf(" $     0. SAIR            $       \n");
-        printf("\nEscolha sua opção: ");
-        scanf("%c", &opcao);
+    opcao = mainMenu();
+    getchar();
+
+    while (opcao != '0') {
+
+        switch (opcao) {
+
+            case '1': 
+                menuCliente();
+                break;
+            case '2':
+                menuDespesa();
+                break;
+            case'3':
+                menuReceita();
+                break;
+            case '4':
+                menuRelatorio();
+                break;
+            case '5':
+                menuSobre();
+                break;
+            default:
+                printf("\nOpção inválida\n");
+                
+        }
+        
+        opcao = mainMenu();
     }
 
-    menuSobre();
     return 0;
 
 }
