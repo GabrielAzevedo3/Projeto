@@ -28,13 +28,13 @@ int main (void) {
                 break;
             default:
                 printf("\nOpção inválida\n");
+                break;
                 
-        }
-        
+        } 
         opcao = mainMenu();
+        
+    
     }
-
     return 0;
 
 }
-
