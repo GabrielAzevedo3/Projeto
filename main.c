@@ -5,8 +5,6 @@ int main (void) {
 
     char opcao;
     opcao = mainMenu();
-    getchar();
-
     while (opcao != '0') {
 
         switch (opcao) {

@@ -18,8 +18,9 @@ char mainMenu (void) {
     printf(" $                           $   \n");
     printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $   \n");
     printf("\n\n");
-    printf("\nEscolha sua opção: ");
+    printf("\nEscolha sua opcao: ");
     scanf("%c", &opcao);
+    getchar();
     return opcao;
 
 }
@@ -40,9 +41,9 @@ char menuCliente (void) {
     printf(" $                           $   \n");
     printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $   \n");
 	printf("\n\n");
-    printf("\nEscolha sua opção: ");
+    printf("\nEscolha sua opcao: ");
     scanf("%c", &opcao);
-    return opcao;
+    getchar();
 
     switch (opcao) {
         case '1':
@@ -61,8 +62,7 @@ char menuCliente (void) {
             deletaCliente();
             break;
     } 
-   
-
+    return opcao;
 
 }
 
@@ -81,7 +81,7 @@ char menuDespesa (void) {
     printf(" $                           $   \n");
     printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $   \n");
 	printf("\n\n");
-    printf("\nEscolha sua opção: ");
+    printf("\nEscolha sua opcao: ");
     scanf("%c", &opcao);
     return opcao;
 
@@ -102,7 +102,7 @@ char menuReceita (void) {
     printf(" $                           $   \n");
     printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $   \n");
 	printf("\n\n");
-    printf("\nEscolha sua opção: ");
+    printf("\nEscolha sua opcao: ");
     scanf("%c", &opcao);
     return opcao;
 
@@ -123,7 +123,7 @@ char menuRelatorio (void) {
     printf(" $                             $   \n");
     printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $  \n");
 	printf("\n\n");
-    printf("\nEscolha sua opção: ");
+    printf("\nEscolha sua opcao: ");
     scanf("%c", &opcao);
     return opcao;
 
@@ -147,7 +147,7 @@ char menuSobre (void) {
     printf(" $                                                           $   \n");
     printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $   \n");
 	printf("\n\n");
-    printf("\nEscolha sua opção: ");
+    printf("\nEscolha sua opcao: ");
     scanf("%c", &opcao);
     return opcao;
 }

@@ -2,31 +2,40 @@
 #include "menus.h"
 
 char cadastraCliente (void) {
-
-    printf("Esta é a função para cadastrar clientes\n");
-
+    char opcao2;
+    printf("\nVocê entrou no Cadastra Cliente ");
+    printf("\nTecle ENTER para continuar... ");
+    opcao2 = getchar();
+    return opcao2;
 }
 
 char listaCliente (void) {
-
-    printf("Esta é a função para listar clientes\n");
-
+    char opcao2;
+    printf("\nVocê entrou no Lista Cliente ");
+    printf("\nTecle ENTER para continuar... ");
+    opcao2 = getchar();
+    return opcao2;
 }
 
 char buscaCliente (void) {
-
-    printf("Esta é a função para buscar clientes\n");
-
+    char opcao2;
+    printf("\nVocê entrou no Busca Cliente ");
+    printf("\nTecle ENTER para continuar... ");
+    opcao2 = getchar();
+    return opcao2;
 }
-
 char alteraCliente (void) {
-
-    printf("Esta é a função para alterar clientes\n");
-
+    char opcao2;
+    printf("\nVocê entrou no Altera Cliente ");
+    printf("\nTecle ENTER para continuar... ");
+    opcao2 = getchar();
+    return opcao2;
 }
 
 char deletaCliente (void) {
-
-    printf("Esta é a função para deletar clientes\n");
-
+    char opcao2;
+    printf("\nVocê entrou no Deleta Cliente ");
+    printf("\nTecle ENTER para continuar... ");
+    opcao2 = getchar();
+    return opcao2;
 }
