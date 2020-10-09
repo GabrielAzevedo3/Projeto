@@ -30,8 +30,7 @@ int main (void) {
                 
         } 
         opcao = mainMenu();
-        
-    
+            
     }
     return 0;
 

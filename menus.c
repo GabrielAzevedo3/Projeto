@@ -83,6 +83,26 @@ char menuDespesa (void) {
 	printf("\n\n");
     printf("\nEscolha sua opcao: ");
     scanf("%c", &opcao);
+    getchar();
+
+    switch (opcao) {
+        case '1':
+            cadastraDespesa();
+            break;
+        case'2': 
+            listaDespesa();
+            break;
+        case '3':
+            buscaDespesa();
+            break;
+        case '4':
+            alteraDespesa();
+            break;
+        case '5':
+            deletaDespesa();
+            break;
+    }
+
     return opcao;
 
 }
@@ -104,6 +124,27 @@ char menuReceita (void) {
 	printf("\n\n");
     printf("\nEscolha sua opcao: ");
     scanf("%c", &opcao);
+    getchar();
+
+    switch (opcao) {
+
+        case '1':
+            cadastraReceita();
+            break;
+        case '2':
+            listaReceita();
+            break;
+        case '3':
+            buscaReceita();
+            break;
+        case '4':
+            alteraReceita();
+            break;
+        case '5':
+            deletaReceita();
+            break;
+    }
+
     return opcao;
 
 }
