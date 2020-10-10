@@ -123,3 +123,12 @@ char deletaReceita (void) {
     opcao2 = getchar();
     return opcao2;
 }
+
+// função do menu Sobre
+
+void pausaPrograma(void) {
+
+    printf("\nTecle ENTER para voltar ao menu principal");
+    getchar();
+    getchar();
+}

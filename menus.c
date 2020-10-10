@@ -18,9 +18,9 @@ char mainMenu (void) {
     printf(" $                           $   \n");
     printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $   \n");
     printf("\n\n");
-    printf("\nEscolha sua opcao: ");
+    printf("Escolha sua opcao: ");
     scanf("%c", &opcao);
-    getchar();
+    //getchar();
     return opcao;
 
 }
@@ -153,7 +153,7 @@ char menuRelatorio (void) {
 
     char opcao;
     printf("\n\n");
-    printf(" $ $ $    MENU RECEITAS    $ $ $   \n");
+    printf(" $ $ $   MENU RELATORIOS   $ $ $   \n");
     printf(" $                             $   \n");
     printf(" $     1. RELATORIO DO DIA     $   \n");
     printf(" $     2. RELATORIO SEMANAL    $   \n");
@@ -166,6 +166,7 @@ char menuRelatorio (void) {
 	printf("\n\n");
     printf("\nEscolha sua opcao: ");
     scanf("%c", &opcao);
+    getchar();
     return opcao;
 
 }
@@ -188,7 +189,5 @@ char menuSobre (void) {
     printf(" $                                                           $   \n");
     printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $   \n");
 	printf("\n\n");
-    printf("\nEscolha sua opcao: ");
-    scanf("%c", &opcao);
-    return opcao;
+
 }

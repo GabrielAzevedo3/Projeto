@@ -33,3 +33,11 @@ char listaReceita (void);
 char buscaReceita (void);
 char alteraReceita (void);
 char deletaReceita (void);
+
+// assinatura da função do menu Relatorio (apenas uma função para printar as opções)
+
+char relatorio (void);
+
+// assinatura da função Sobre
+
+void pausaPrograma(void);

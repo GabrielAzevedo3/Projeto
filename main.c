@@ -23,6 +23,7 @@ int main (void) {
                 break;
             case '5':
                 menuSobre();
+                pausaPrograma();
                 break;
             default:
                 printf("\nOpção inválida\n");
