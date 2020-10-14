@@ -34,9 +34,13 @@ char buscaReceita (void);
 char alteraReceita (void);
 char deletaReceita (void);
 
-// assinatura da função do menu Relatorio (apenas uma função para printar as opções)
+// assinatura das funções do menu Relatorio 
 
-char relatorio (void);
+char relatorioDiario (void);
+char relatorioSemanal (void);
+char relatorioMensal (void);
+char relatorioAnual (void);
+char escolherPeriodo (void);
 
 // assinatura da função Sobre
 

@@ -20,7 +20,7 @@ char mainMenu (void) {
     printf("\n\n");
     printf("Escolha sua opcao: ");
     scanf("%c", &opcao);
-    //getchar();
+    getchar();
     return opcao;
 
 }
@@ -28,7 +28,6 @@ char mainMenu (void) {
 char menuCliente (void) {
 
 	char opcao;
-    getchar();
 	printf("\n\n");
     printf(" $ $ $   MENU CLIENTE    $ $ $   \n");
     printf(" $                           $   \n");
@@ -125,7 +124,6 @@ char menuReceita (void) {
     printf("\nEscolha sua opcao: ");
     scanf("%c", &opcao);
     getchar();
-
     switch (opcao) {
 
         case '1':
@@ -144,7 +142,6 @@ char menuReceita (void) {
             deletaReceita();
             break;
     }
-
     return opcao;
 
 }
@@ -155,18 +152,35 @@ char menuRelatorio (void) {
     printf("\n\n");
     printf(" $ $ $   MENU RELATORIOS   $ $ $   \n");
     printf(" $                             $   \n");
-    printf(" $     1. RELATORIO DO DIA     $   \n");
+    printf(" $     1. RELATORIO DIARIO     $   \n");
     printf(" $     2. RELATORIO SEMANAL    $   \n");
     printf(" $     3. RELATORIO MENSAL     $   \n");
     printf(" $     4. RELATORIO ANUAL      $   \n");
-    printf(" $     5. RELATORIO COMPLETO   $   \n");
+    printf(" $     5. ESCOLHER PERIODO     $   \n");
     printf(" $     0. MENU PRINCIPAL       $   \n");
     printf(" $                             $   \n");
-    printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $  \n");
+    printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $   \n");
 	printf("\n\n");
     printf("\nEscolha sua opcao: ");
     scanf("%c", &opcao);
     getchar();
+    switch (opcao) {
+        case '1':
+            relatorioDiario();
+            break;
+        case '2':
+            relatorioSemanal();
+            break;
+        case '3':
+            relatorioMensal();
+            break;
+        case '4':
+            relatorioAnual();
+            break;
+        case '5':
+            escolherPeriodo();
+            break;
+    }
     return opcao;
 
 }
@@ -188,6 +202,16 @@ char menuSobre (void) {
     printf(" $                            2020                           $   \n");
     printf(" $                                                           $   \n");
     printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $   \n");
-	printf("\n\n");
-
+    printf(" $                                                           $   \n");
+    printf(" $      O controle de finanças domésticas é uma das          $   \n");
+    printf(" $  atividades necessárias em praticamente todas as          $   \n");
+    printf(" $  residências, uma vez que para conseguir equilibrar       $   \n");
+    printf(" $  o orçamento doméstico e evitaro acúmulo de dívidas,      $   \n");
+    printf(" $  se faz necessário monitorar entradas e saídas de         $   \n");
+    printf(" $  recursos. Tal atividade pode demandar tempo e esforço,   $   \n");
+    printf(" $  principalmente se for realizado sem  a ajuda de um       $   \n");
+    printf(" $  software                                                 $   \n");
+    printf(" $                                                           $   \n");
+    printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $   \n");
+    printf("\n");
 }

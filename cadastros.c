@@ -6,7 +6,7 @@
 char cadastraCliente (void) {
     char opcao2;
     printf("\nVocê entrou no Cadastra Cliente ");
-    printf("\nTecle ENTER para continuar... ");
+    printf("\nTecle ENTER para voltar ");
     opcao2 = getchar();
     return opcao2;
 }
@@ -14,7 +14,7 @@ char cadastraCliente (void) {
 char listaCliente (void) {
     char opcao2;
     printf("\nVocê entrou no Lista Cliente ");
-    printf("\nTecle ENTER para continuar... ");
+    printf("\nTecle ENTER para voltar ");
     opcao2 = getchar();
     return opcao2;
 }
@@ -22,14 +22,14 @@ char listaCliente (void) {
 char buscaCliente (void) {
     char opcao2;
     printf("\nVocê entrou no Busca Cliente ");
-    printf("\nTecle ENTER para continuar... ");
+    printf("\nTecle ENTER para voltar ");
     opcao2 = getchar();
     return opcao2;
 }
 char alteraCliente (void) {
     char opcao2;
     printf("\nVocê entrou no Altera Cliente ");
-    printf("\nTecle ENTER para continuar... ");
+    printf("\nTecle ENTER para voltar ");
     opcao2 = getchar();
     return opcao2;
 }
@@ -37,7 +37,7 @@ char alteraCliente (void) {
 char deletaCliente (void) {
     char opcao2;
     printf("\nVocê entrou no Deleta Cliente ");
-    printf("\nTecle ENTER para continuar... ");
+    printf("\nTecle ENTER para voltar ");
     opcao2 = getchar();
     return opcao2;
 }
@@ -47,7 +47,7 @@ char deletaCliente (void) {
 char cadastraDespesa (void) {
     char opcao2;
     printf("\nVocê entrou no Cadastra Despesa ");
-    printf("\nTecle ENTER para continuar... ");
+    printf("\nTecle ENTER para voltar ");
     opcao2 = getchar();
     return opcao2;
 }
@@ -55,7 +55,7 @@ char cadastraDespesa (void) {
 char listaDespesa (void) {
     char opcao2;
     printf("\nVocê entrou no Lista Despesa ");
-    printf("\nTecle ENTER para continuar... ");
+    printf("\nTecle ENTER para voltar ");
     opcao2 = getchar();
     return opcao2;
 }
@@ -63,14 +63,14 @@ char listaDespesa (void) {
 char buscaDespesa (void) {
     char opcao2;
     printf("\nVocê entrou no Busca Despesa ");
-    printf("\nTecle ENTER para continuar... ");
+    printf("\nTecle ENTER para voltar ");
     opcao2 = getchar();
     return opcao2;
 }
 char alteraDespesa (void) {
     char opcao2;
     printf("\nVocê entrou no Altera Despesa ");
-    printf("\nTecle ENTER para continuar... ");
+    printf("\nTecle ENTER para voltar ");
     opcao2 = getchar();
     return opcao2;
 }
@@ -78,7 +78,7 @@ char alteraDespesa (void) {
 char deletaDespesa (void) {
     char opcao2;
     printf("\nVocê entrou no Deleta Despesa ");
-    printf("\nTecle ENTER para continuar... ");
+    printf("\nTecle ENTER para voltar ");
     opcao2 = getchar();
     return opcao2;
 }
@@ -88,7 +88,7 @@ char deletaDespesa (void) {
 char cadastraReceita (void) {
     char opcao2;
     printf("\nVocê entrou no Cadastra Receita ");
-    printf("\nTecle ENTER para continuar... ");
+    printf("\nTecle ENTER para voltar ");
     opcao2 = getchar();
     return opcao2;
 }
@@ -96,7 +96,7 @@ char cadastraReceita (void) {
 char listaReceita (void) {
     char opcao2;
     printf("\nVocê entrou no Lista Receita ");
-    printf("\nTecle ENTER para continuar... ");
+    printf("\nTecle ENTER para voltar ");
     opcao2 = getchar();
     return opcao2;
 }
@@ -104,14 +104,14 @@ char listaReceita (void) {
 char buscaReceita (void) {
     char opcao2;
     printf("\nVocê entrou no Busca Receita ");
-    printf("\nTecle ENTER para continuar... ");
+    printf("\nTecle ENTER para voltar ");
     opcao2 = getchar();
     return opcao2;
 }
 char alteraReceita (void) {
     char opcao2;
     printf("\nVocê entrou no Altera Receita ");
-    printf("\nTecle ENTER para continuar... ");
+    printf("\nTecle ENTER para voltar ");
     opcao2 = getchar();
     return opcao2;
 }
@@ -119,7 +119,49 @@ char alteraReceita (void) {
 char deletaReceita (void) {
     char opcao2;
     printf("\nVocê entrou no Deleta Receita ");
-    printf("\nTecle ENTER para continuar... ");
+    printf("\nTecle ENTER para voltar ");
+    opcao2 = getchar();
+    return opcao2;
+}
+
+// funções do menu Relatorio
+
+char relatorioDiario (void) {
+    char opcao2;
+    printf("\nVocê entrou no Relatorio Diario ");
+    printf("\nTecle ENTER para voltar ");
+    opcao2 = getchar();
+    return opcao2;
+}
+
+char relatorioSemanal (void) {
+    char opcao2;
+    printf("\nVocê entrou no Relatorio Semanal ");
+    printf("\nTecle ENTER para voltar ");
+    opcao2 = getchar();
+    return opcao2;
+}
+
+char relatorioMensal (void) {
+    char opcao2;
+    printf("\nVocê entrou no Relatorio Mensal ");
+    printf("\nTecle ENTER para voltar ");
+    opcao2 = getchar();
+    return opcao2;
+}
+
+char relatorioAnual (void) {
+    char opcao2;
+    printf("\nVocê entrou no Relatorio Anual ");
+    printf("\nTecle ENTER para voltar ");
+    opcao2 = getchar();
+    return opcao2;
+}
+
+char escolherPeriodo (void) {
+    char opcao2;
+    printf("\nVocê entrou no Escolher Periodo ");
+    printf("\nTecle ENTER para voltar ");
     opcao2 = getchar();
     return opcao2;
 }
@@ -128,7 +170,7 @@ char deletaReceita (void) {
 
 void pausaPrograma(void) {
 
-    printf("\nTecle ENTER para voltar ao menu principal");
+    printf("\nTecle ENTER para voltar");
     getchar();
-    getchar();
+    //getchar();
 }
