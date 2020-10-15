@@ -26,7 +26,7 @@ int main (void) {
                 pausaPrograma();
                 break;
             default:
-                printf("\nOpção inválida\n");
+                opcaoInvalida();
                 break;
                 
         } 

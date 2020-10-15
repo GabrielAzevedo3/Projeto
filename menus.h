@@ -2,6 +2,10 @@
 
 char mainMenu (void);
 
+// assinatura da função opcaoInvalida
+
+char opcaoInvalida(void);
+
 // assinatura das funções dos menus
 
 char menuCliente (void);
