@@ -25,9 +25,9 @@ int main (void) {
                 menuSobre();
                 pausaPrograma();
                 break;
-            default:
-                opcaoInvalida();
-                break;
+                default:
+                    opcaoInvalida();
+                    break;
                 
         } 
         opcao = mainMenu();

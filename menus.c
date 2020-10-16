@@ -60,6 +60,9 @@ char menuCliente (void) {
         case '5':
             deletaCliente();
             break;
+        default:
+            opcaoInvalida();
+            break;
     } 
     return opcao;
 
@@ -99,6 +102,9 @@ char menuDespesa (void) {
             break;
         case '5':
             deletaDespesa();
+            break;
+        default:
+            opcaoInvalida();
             break;
     }
 
@@ -141,6 +147,9 @@ char menuReceita (void) {
         case '5':
             deletaReceita();
             break;
+        default:
+            opcaoInvalida();
+            break;
     }
     return opcao;
 
@@ -179,6 +188,9 @@ char menuRelatorio (void) {
             break;
         case '5':
             escolherPeriodo();
+            break;
+        default:
+            opcaoInvalida();
             break;
     }
     return opcao;
