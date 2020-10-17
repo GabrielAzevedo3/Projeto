@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include "menus.h"
+#include <stdlib.h>
 
 
 char mainMenu (void) {
 
 	char opcao;
-
+    system("clear||cls");
     printf("\n\n");
     printf(" $ $ $   MENU PRINCIPAL  $ $ $   \n");
     printf(" $                           $   \n");
@@ -28,6 +29,7 @@ char mainMenu (void) {
 char menuCliente (void) {
 
 	char opcao;
+    system("clear||cls");
 	printf("\n\n");
     printf(" $ $ $   MENU CLIENTE    $ $ $   \n");
     printf(" $                           $   \n");
@@ -60,9 +62,6 @@ char menuCliente (void) {
         case '5':
             deletaCliente();
             break;
-        default:
-            opcaoInvalida();
-            break;
     } 
     return opcao;
 
@@ -71,6 +70,7 @@ char menuCliente (void) {
 char menuDespesa (void) {
 
 	char opcao;
+    system("clear||cls");
 	printf("\n\n");
     printf(" $ $ $   MENU DESPESA    $ $ $   \n");
     printf(" $                           $   \n");
@@ -103,9 +103,6 @@ char menuDespesa (void) {
         case '5':
             deletaDespesa();
             break;
-        default:
-            opcaoInvalida();
-            break;
     }
 
     return opcao;
@@ -115,6 +112,7 @@ char menuDespesa (void) {
 char menuReceita (void) {
 
 	char opcao;
+    system("clear||cls");
 	printf("\n\n");
     printf(" $ $ $   MENU RECEITAS   $ $ $   \n");
     printf(" $                           $   \n");
@@ -147,9 +145,6 @@ char menuReceita (void) {
         case '5':
             deletaReceita();
             break;
-        default:
-            opcaoInvalida();
-            break;
     }
     return opcao;
 
@@ -158,6 +153,7 @@ char menuReceita (void) {
 char menuRelatorio (void) {
 
     char opcao;
+    system("clear||cls");
     printf("\n\n");
     printf(" $ $ $   MENU RELATORIOS   $ $ $   \n");
     printf(" $                             $   \n");
@@ -189,9 +185,6 @@ char menuRelatorio (void) {
         case '5':
             escolherPeriodo();
             break;
-        default:
-            opcaoInvalida();
-            break;
     }
     return opcao;
 
@@ -200,6 +193,7 @@ char menuRelatorio (void) {
 char menuSobre (void) {
 
     char opcao;
+    system("clear||cls");
     printf("\n\n");
     printf(" $ $ $ $ $ $ $ $ $ $      MENU SOBRE       $ $ $ $ $ $ $ $ $ $   \n");
     printf(" $                                                           $   \n");
