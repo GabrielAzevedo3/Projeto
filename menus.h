@@ -2,10 +2,6 @@
 
 char mainMenu (void);
 
-// assinatura da função opcaoInvalida
-
-char opcaoInvalida(void);
-
 // assinatura das funções dos menus
 
 char menuCliente (void);
@@ -46,6 +42,6 @@ char relatorioMensal (void);
 char relatorioAnual (void);
 char escolherPeriodo (void);
 
-// assinatura da função Sobre
+// assinatura da função para pausar o programa
 
 void pausaPrograma(void);

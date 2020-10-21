@@ -2,13 +2,10 @@
 #include "menus.h"
 
 int main (void) {
-
     char opcao;
     opcao = mainMenu();
     while (opcao != '0') {
-
         switch (opcao) {
-
             case '1': 
                 menuCliente();
                 break;
@@ -26,13 +23,11 @@ int main (void) {
                 pausaPrograma();
                 break;
             default:
-                opcaoInvalida();
+                printf("\nOpcao invalida\n");
+                pausaPrograma();
                 break;
-                
         } 
         opcao = mainMenu();
-            
     }
     return 0;
-
 }

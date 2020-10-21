@@ -23,7 +23,6 @@ char mainMenu (void) {
     scanf("%c", &opcao);
     getchar();
     return opcao;
-
 }
 
 char menuCliente (void) {
@@ -45,26 +44,27 @@ char menuCliente (void) {
     printf("\nEscolha sua opcao: ");
     scanf("%c", &opcao);
     getchar();
-
-    switch (opcao) {
-        case '1':
-            cadastraCliente();
-            break;
-        case '2':
-            listaCliente();
-            break;
-        case '3':
-            buscaCliente();
-            break;
-        case '4':
-            alteraCliente();
-            break;
-        case '5':
-            deletaCliente();
-            break;
-    } 
+    while (opcao != '0') {
+        switch (opcao) {
+            case '1':
+                cadastraCliente();
+                break;
+            case '2':
+                listaCliente();
+                break;
+            case '3':
+                buscaCliente();
+                break;
+            case '4':
+                alteraCliente();
+                break;
+            case '5':
+                deletaCliente();
+                break;
+        } 
+        opcao = menuCliente();
+    }
     return opcao;
-
 }
 
 char menuDespesa (void) {
@@ -86,27 +86,27 @@ char menuDespesa (void) {
     printf("\nEscolha sua opcao: ");
     scanf("%c", &opcao);
     getchar();
-
-    switch (opcao) {
-        case '1':
-            cadastraDespesa();
-            break;
-        case'2': 
-            listaDespesa();
-            break;
-        case '3':
-            buscaDespesa();
-            break;
-        case '4':
-            alteraDespesa();
-            break;
-        case '5':
-            deletaDespesa();
-            break;
+    while (opcao != '0') {
+        switch (opcao) {
+            case '1':
+                cadastraDespesa();
+                break;
+            case'2': 
+                listaDespesa();
+                break;
+            case '3':
+                buscaDespesa();
+                break;
+            case '4':
+                alteraDespesa();
+                break;
+            case '5':
+                deletaDespesa();
+                break;
+        }
+        opcao = menuDespesa();
     }
-
     return opcao;
-
 }
 
 char menuReceita (void) {
@@ -128,26 +128,27 @@ char menuReceita (void) {
     printf("\nEscolha sua opcao: ");
     scanf("%c", &opcao);
     getchar();
-    switch (opcao) {
-
-        case '1':
-            cadastraReceita();
-            break;
-        case '2':
-            listaReceita();
-            break;
-        case '3':
-            buscaReceita();
-            break;
-        case '4':
-            alteraReceita();
-            break;
-        case '5':
-            deletaReceita();
-            break;
+    while (opcao != '0') {
+        switch (opcao) {
+            case '1':
+                cadastraReceita();
+                break;
+            case '2':
+                listaReceita();
+                break;
+            case '3':
+                buscaReceita();
+                break;
+            case '4':
+                alteraReceita();
+                break;
+            case '5':
+                deletaReceita();
+                break;
+        }
+        opcao = menuReceita();
     }
     return opcao;
-
 }
 
 char menuRelatorio (void) {
@@ -169,25 +170,27 @@ char menuRelatorio (void) {
     printf("\nEscolha sua opcao: ");
     scanf("%c", &opcao);
     getchar();
-    switch (opcao) {
-        case '1':
-            relatorioDiario();
-            break;
-        case '2':
-            relatorioSemanal();
-            break;
-        case '3':
-            relatorioMensal();
-            break;
-        case '4':
-            relatorioAnual();
-            break;
-        case '5':
-            escolherPeriodo();
-            break;
+    while (opcao != '0') {
+        switch (opcao) {
+            case '1':
+                relatorioDiario();
+                break;
+            case '2':
+                relatorioSemanal();
+                break;
+            case '3':
+                relatorioMensal();
+                break;
+            case '4':
+                relatorioAnual();
+                break;
+            case '5':
+                escolherPeriodo();
+                break;
+        }
+        opcao = menuRelatorio();
     }
     return opcao;
-
 }
 
 char menuSobre (void) {

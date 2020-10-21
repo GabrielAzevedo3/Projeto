@@ -1,14 +1,6 @@
 #include <stdio.h>
 #include "menus.h"
 
-// assinatura da função opcaoInvalida
-
-char opcaoInvalida (void) {
-
-    printf("\nOpcao Invalida, tecle ENTER para voltar");
-    getchar();
-}
-
 // funções do menu cliente
 
 char cadastraCliente (void) {
