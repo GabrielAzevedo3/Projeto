@@ -3,12 +3,20 @@
 
 // funções do menu cliente
 
-char cadastraCliente (void) {
+void cadastraCliente (void) {
+    int nome, dataNasc, cpf, email;
     char opcao2;
-    printf("\nVocê entrou no Cadastra Cliente\n ");
+    printf("Digite seu nome: ");
+    scanf("d", &nome);
+    printf("Digite seu email: ");
+    scanf("%d", &email);
+    printf("Digite sua data nascimento (dd/mm/aaaa): ");
+    scanf("%d", &dataNasc);
+    printf("Digite seu CPF: ");
+    scanf("%d", &cpf);
     printf("\nTecle ENTER para voltar");
-    opcao2 = getchar();
-    return opcao2;
+    //opcao2 = getchar();
+    //return opcao2;
 }
 
 char listaCliente (void) {

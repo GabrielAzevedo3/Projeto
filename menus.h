@@ -12,7 +12,7 @@ char menuSobre (void);
 
 // assinatura das funções do menu Cliente
 
-char cadastraCliente (void);
+void cadastraCliente (void);
 char listaCliente (void);
 char buscaCliente (void);
 char alteraCliente (void);
