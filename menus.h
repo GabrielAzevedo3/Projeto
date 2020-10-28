@@ -12,7 +12,7 @@ char menuSobre (void);
 
 // assinatura das funções do menu Cliente
 
-void cadastraCliente (void);
+char cadastraCliente (void);
 char listaCliente (void);
 char buscaCliente (void);
 char alteraCliente (void);
@@ -45,3 +45,7 @@ char escolherPeriodo (void);
 // assinatura da função para pausar o programa
 
 void pausaPrograma(void);
+
+// assinatura da função validaNome 
+
+void validaNome (int);

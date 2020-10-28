@@ -3,22 +3,43 @@
 
 // funções do menu cliente
 
-void cadastraCliente (void) {
-    int nome, dataNasc, cpf, email;
+char cadastraCliente (void) {
+
+    int dataNasc, cpf;
     char opcao2;
-    printf("Digite seu nome: ");
-    scanf("d", &nome);
-    printf("Digite seu email: ");
-    scanf("%d", &email);
-    printf("Digite sua data nascimento (dd/mm/aaaa): ");
+    char nome[50];
+    char email[50];
+    printf("\nDigite seu nome: ");
+    gets(nome); // função que pega tudo o que foi digitado
+    //scanf("%[A-Za-z]", nome); 
+    //validaNome(nome);
+    printf("\nDigite seu email: ");
+    scanf("%s", email);
+    printf("\nDigite sua data nascimento (dd/mm/aaaa): ");
     scanf("%d", &dataNasc);
-    printf("Digite seu CPF: ");
+    printf("\nDigite seu CPF: ");
     scanf("%d", &cpf);
-    printf("\nTecle ENTER para voltar");
-    //opcao2 = getchar();
-    //return opcao2;
+    printf("\nUsuario cadastrado!\n");
+    opcao2 = getchar();
+    return opcao2;
 }
 
+// função para validar nome
+/*
+void validaNome (int nome) {
+    // esboço imcompleto 
+
+    for (int i; i < nome; i++) {
+        if (nome >= 'A' && nome <= 'Z') {
+            return 1;  
+        } else if (nome >= 'a' && nome <= 'z') {
+            return 1;  
+        } else {
+            return 0;  
+        }
+    }
+}   
+*/
 char listaCliente (void) {
     char opcao2;
     printf("\nVocê entrou no Lista Cliente\n ");

@@ -47,6 +47,7 @@ char menuCliente (void) {
     switch (opcao) {
         case '1':
             cadastraCliente();
+            pausaPrograma();
             break;
         case '2':
             listaCliente();
@@ -210,7 +211,7 @@ char menuSobre (void) {
     printf(" $  se faz necessário monitorar entradas e saídas de         $   \n");
     printf(" $  recursos. Tal atividade pode demandar tempo e esforço,   $   \n");
     printf(" $  principalmente se for realizado sem  a ajuda de um       $   \n");
-    printf(" $  software                                                 $   \n");
+    printf(" $  software.                                                $   \n");
     printf(" $                                                           $   \n");
     printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $   \n");
     printf("\n");
