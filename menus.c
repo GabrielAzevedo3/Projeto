@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "menus.h"
+#include "cadastros.h"
 #include <stdlib.h>
 
 
@@ -47,7 +48,6 @@ char menuCliente (void) {
     switch (opcao) {
         case '1':
             cadastraCliente();
-            pausaPrograma();
             break;
         case '2':
             listaCliente();
