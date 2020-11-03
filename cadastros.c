@@ -8,45 +8,63 @@
 
 void cadastraCliente (void) {
 
-    int dataNasc, cpf;
+    int dataNasc;
+    char dia,mes,ano;
     char opcao2;
     char nome[100];
     char email[50];
+    char cpf[15];
     char *pnome = nome;
+    char *pemail = email;
+    char *pcpf = cpf;
+
     printf("\nDigite seu nome: ");
     gets(pnome); // função que pega tudo o que foi digitado
     validaNome(pnome);
+    while((validaNome(pnome))) {
+        printf("Nome invalido, digite novamente: ");
+        gets(pnome);
+
+    }
 
     printf("\nDigite seu email: ");
-    scanf("%s", email);
-    printf("\nDigite sua data nascimento (dd/mm/aaaa): ");
-    scanf("%d", &dataNasc);
+    gets(email);
+    validaEmail(pemail);
+    while(!(validaEmail(pemail))){
+        printf("Email invalido, digite novamente: ");
+        gets(pemail);
+    }
+
+    printf("\nDigite sua data nascimento\n");
+    printf("Dia: ");
+    scanf("%d", &dia);
+    printf("mes: ");
+    scanf("%d", &mes);
+    printf("Ano: ");
+    scanf("%d", &ano);
+    dataValida(dia, mes, ano);
+    while(!(dataValida(dia, mes, ano))) {
+        printf("Data invalida, digite novamente: \n");
+        printf("Dia: ");
+        scanf("%d", &dia);
+        printf("mes: ");
+        scanf("%d", &mes);
+        printf("Ano: ");
+        scanf("%d", &ano);
+    }
+    
     printf("\nDigite seu CPF: ");
-    scanf("%d", &cpf);
+    gets(cpf);
+    validaCpf(pcpf);
+    while(!(validaCpf(pcpf))){
+        printf("CPF invalido, digite novamente: ");
+        gets(pcpf);
+    }
+
     printf("\nUsuario cadastrado!\n");
     pausaPrograma();
-    opcao2 = getchar();
     menuCliente();
 }
-
-void validaNome(char *pnome) {
-    int tam = strlen(pnome);
-    char letra;
-    for (int i = 0; i < tam; i++)
-    {
-        letra = pnome[i];
-        if (isdigit(letra)) {
-            printf("Nome inválido");
-            return;
-        }
-        if (isspace(letra)) {
-        }
-        if (isalpha(letra)) {
-        }
-    }
-    //printf("Nome Válido");
-}
-
 
 void listaCliente (void) {
     char opcao2;
