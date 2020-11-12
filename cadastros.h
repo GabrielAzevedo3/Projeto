@@ -38,6 +38,11 @@ void pausaPrograma(void);
 
 int validaNome (char*);
 
+// assinatura da função validaData
+
+int dataValida(int, int, int);
+int bissexto(int);
+
 // assinatura da função validaEmail
 
 int validaEmail(char*);
@@ -49,9 +54,4 @@ int validaCpf(char*);
 int chartoint(char);
 
 char inttochar(int);
-
-// assinatura da função dataValida && anoBissexto
-
-int dataValida(int, int, int);
-int bissexto(int);
 

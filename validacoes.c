@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "menus.h"
 #include "cadastros.h"
 #include <ctype.h>
@@ -18,12 +19,13 @@ int validaNome(char *pnome) {
             break;*/
             return 1;
         }
-        if (isspace(letra)) {
+        else if (isalpha(letra)) {
             //return 0;
         }
-        if (isalpha(letra)) {
+        else if (isspace(letra)) {
             //return 0;
         }
+
     }
     return 0;
     //printf("Nome Válido");

@@ -8,10 +8,14 @@
 
 void cadastraCliente (void) {
 
-    int dataNasc;
-    char dia,mes,ano;
+    /*int dataNasc;
+    char dia,mes,ano;*/
     char opcao2;
     char nome[100];
+    int data[3];
+    int dia = data[0];
+    int mes = data[1];
+    int ano = data[2];
     char email[50];
     char cpf[15];
     char *pnome = nome;
@@ -24,7 +28,14 @@ void cadastraCliente (void) {
     while((validaNome(pnome))) {
         printf("Nome invalido, digite novamente: ");
         gets(pnome);
+    }
 
+    printf("\nDigite sua data de nascimento (dd/mm/aaaa): ");
+    scanf("%d/%d/%d",&data[0], &data[1], &data[2]);
+    dataValida(dia, mes, ano);
+    while(!dataValida(data[0], data[1], data[2])){
+    printf("\nData invalida! Digite novamente (dd/mm/aaaa): ");
+    scanf("%d/%d/%d",&data[0], &data[1], &data[2]);
     }
 
     printf("\nDigite seu email: ");
@@ -35,24 +46,6 @@ void cadastraCliente (void) {
         gets(pemail);
     }
 
-    printf("\nDigite sua data nascimento\n");
-    printf("Dia: ");
-    scanf("%d", &dia);
-    printf("mes: ");
-    scanf("%d", &mes);
-    printf("Ano: ");
-    scanf("%d", &ano);
-    dataValida(dia, mes, ano);
-    while(!(dataValida(dia, mes, ano))) {
-        printf("Data invalida, digite novamente: \n");
-        printf("Dia: ");
-        scanf("%d", &dia);
-        printf("mes: ");
-        scanf("%d", &mes);
-        printf("Ano: ");
-        scanf("%d", &ano);
-    }
-    
     printf("\nDigite seu CPF: ");
     gets(cpf);
     validaCpf(pcpf);
