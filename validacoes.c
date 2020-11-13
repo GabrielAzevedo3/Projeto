@@ -5,7 +5,7 @@
 #include <ctype.h>
 #include <string.h>
 
-// validações
+// validações do menu cliente
 
 int validaNome(char *pnome) {
 
@@ -153,3 +153,5 @@ int chartoint(char c){
 char inttochar(int n){
   return n + 48;
 }
+
+// validações do menu despesa

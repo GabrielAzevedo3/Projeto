@@ -8,8 +8,6 @@
 
 void cadastraCliente (void) {
 
-    /*int dataNasc;
-    char dia,mes,ano;*/
     char opcao2;
     char nome[100];
     int data[3];
@@ -46,7 +44,7 @@ void cadastraCliente (void) {
         gets(pemail);
     }
 
-    printf("\nDigite seu CPF: ");
+    printf("\nDigite seu CPF: (xxxxxxxxxxx): ");
     gets(cpf);
     validaCpf(pcpf);
     while(!(validaCpf(pcpf))){
@@ -94,10 +92,36 @@ void deletaCliente (void) {
 // funções do menu despesa
 
 void cadastraDespesa (void) {
+
     char opcao2;
-    printf("\nVocê entrou no Cadastra Despesa\n ");
-    printf("\nTecle ENTER para voltar");
-    opcao2 = getchar();
+    float valor;
+    char descricao[1000];
+    char categoria[1000];
+    int data[3];
+    int dia = data[0];
+    int mes = data[1];
+    int ano = data[2];
+
+
+    printf("\nValor da despesa: ");
+    scanf("%f", &valor);
+
+    printf("\nDescricao: ");
+    scanf("%s", descricao);
+
+    printf("\nCategoria: ");
+    scanf("%s", categoria);
+
+    printf("\nData (dd/mm/aaaa): ");
+    scanf("%d/%d/%d",&data[0], &data[1], &data[2]);
+    dataValida(dia, mes, ano);
+    while(!dataValida(data[0], data[1], data[2])){
+    printf("\nData invalida! Digite novamente (dd/mm/aaaa): ");
+    scanf("%d/%d/%d",&data[0], &data[1], &data[2]);
+    }
+
+    printf("\nDespesa cadastrada!\n");
+    pausaPrograma();
     menuDespesa();
 }
 
@@ -135,10 +159,36 @@ void deletaDespesa (void) {
 // funções do menu Receita
 
 void cadastraReceita (void) {
+
     char opcao2;
-    printf("\nVocê entrou no Cadastra Receita\n ");
-    printf("\nTecle ENTER para voltar");
-    opcao2 = getchar();
+    float valor;
+    char descricao[1000];
+    char categoria[1000];
+    int data[3];
+    int dia = data[0];
+    int mes = data[1];
+    int ano = data[2];
+
+
+    printf("\nValor da receita: ");
+    scanf("%f", &valor);
+
+    printf("\nDescricao: ");
+    scanf("%s", descricao);
+
+    printf("\nCategoria: ");
+    scanf("%s", categoria);
+
+    printf("\nData (dd/mm/aaaa): ");
+    scanf("%d/%d/%d",&data[0], &data[1], &data[2]);
+    dataValida(dia, mes, ano);
+    while(!dataValida(data[0], data[1], data[2])){
+    printf("\nData invalida! Digite novamente (dd/mm/aaaa): ");
+    scanf("%d/%d/%d",&data[0], &data[1], &data[2]);
+    }
+
+    printf("\nReceita cadastrada!\n");
+    pausaPrograma();
     menuReceita();
 }
 
