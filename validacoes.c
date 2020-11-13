@@ -7,28 +7,22 @@
 
 // validações do menu cliente
 
-int validaNome(char *pnome) {
+int validaNome(char *nome) {
 
-    int tam = strlen(pnome);
+    int tam = strlen(nome);
     char letra;
     for (int i = 0; i < tam; i++)
     {
-        letra = pnome[i];
+        letra = nome[i];
         if (isdigit(letra)) {
-            /*printf("Nome inVálido");
-            break;*/
             return 1;
         }
         else if (isalpha(letra)) {
-            //return 0;
         }
         else if (isspace(letra)) {
-            //return 0;
         }
-
     }
     return 0;
-    //printf("Nome Válido");
 }
 
 int dataValida(int dia, int mes, int ano) {
@@ -63,14 +57,15 @@ int bissexto(int ano) {
     }
 }
 
+// função feita por Hiago e Danrley
 
-int validaEmail(char *pemail) {
+int validaEmail(char *email) {
 
-  int tam = strlen(pemail);
+  int tam = strlen(email);
   int arroba = 0, ponto = 0, Aponto = 0, Dponto = 0, i;
 
   for (i = 0; i < tam; i++){
-    char c = pemail[i];
+    char c = email[i];
 
     if(c == '@'){
       if (arroba)
@@ -101,9 +96,11 @@ int validaEmail(char *pemail) {
     return 0;
 }
 
-int validaCpf(char *pcpf){
+// função feita por Hiago e Danrley
 
-	int tamanho = strlen(pcpf);
+int validaCpf(char *cpf){
+
+	int tamanho = strlen(cpf);
     if (tamanho != 11) {
         return 0;
     } else {
@@ -112,7 +109,7 @@ int validaCpf(char *pcpf){
       char digito1, digito2;
       int j = 0;
       for(int i = 10; i >= 2; i--){
-        num = chartoint(pcpf[j]);
+        num = chartoint(cpf[j]);
         num *= i;
         soma1 += num;
         j++;
@@ -122,13 +119,13 @@ int validaCpf(char *pcpf){
       if(soma1 > 9)
         soma1 = 0;
       digito1 = inttochar(soma1);
-      if(digito1 != pcpf[9])
+      if(digito1 != cpf[9])
         return 0;
       else {
         j = 0;
         soma1 = 0;
         for(int i = 11; i >= 2; i--){
-          num = chartoint(pcpf[j]);
+          num = chartoint(cpf[j]);
           num *= i;
           soma1 += num;
           j++;
@@ -138,7 +135,7 @@ int validaCpf(char *pcpf){
         if(soma1 > 9)
           soma1 = 0;
         digito2 = inttochar(soma1);
-        if(digito2 != pcpf[10])
+        if(digito2 != cpf[10])
           return 0;
         else
           return 1;

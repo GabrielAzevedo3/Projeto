@@ -16,20 +16,19 @@ void cadastraCliente (void) {
     int ano = data[2];
     char email[50];
     char cpf[15];
-    char *pnome = nome;
-    char *pemail = email;
-    char *pcpf = cpf;
 
     printf("\nDigite seu nome: ");
-    gets(pnome); // função que pega tudo o que foi digitado
-    validaNome(pnome);
-    while((validaNome(pnome))) {
+    scanf("%s", nome); // função que pega tudo o que foi digitado
+    getchar();
+    validaNome(nome);
+    while((validaNome(nome))) {
         printf("Nome invalido, digite novamente: ");
-        gets(pnome);
+        gets(nome);
     }
 
     printf("\nDigite sua data de nascimento (dd/mm/aaaa): ");
     scanf("%d/%d/%d",&data[0], &data[1], &data[2]);
+    getchar();
     dataValida(dia, mes, ano);
     while(!dataValida(data[0], data[1], data[2])){
     printf("\nData invalida! Digite novamente (dd/mm/aaaa): ");
@@ -38,18 +37,18 @@ void cadastraCliente (void) {
 
     printf("\nDigite seu email: ");
     gets(email);
-    validaEmail(pemail);
-    while(!(validaEmail(pemail))){
+    validaEmail(email);
+    while(!(validaEmail(email))){
         printf("Email invalido, digite novamente: ");
-        gets(pemail);
+        gets(email);
     }
 
     printf("\nDigite seu CPF: (xxxxxxxxxxx): ");
     gets(cpf);
-    validaCpf(pcpf);
-    while(!(validaCpf(pcpf))){
+    validaCpf(cpf);
+    while(!(validaCpf(cpf))){
         printf("CPF invalido, digite novamente: ");
-        gets(pcpf);
+        gets(cpf);
     }
 
     printf("\nUsuario cadastrado!\n");
@@ -96,7 +95,7 @@ void cadastraDespesa (void) {
     char opcao2;
     float valor;
     char descricao[1000];
-    char categoria[1000];
+    char categoria[100];
     int data[3];
     int dia = data[0];
     int mes = data[1];
@@ -105,15 +104,19 @@ void cadastraDespesa (void) {
 
     printf("\nValor da despesa: ");
     scanf("%f", &valor);
+    getchar();
 
     printf("\nDescricao: ");
     scanf("%s", descricao);
+    getchar();
 
     printf("\nCategoria: ");
     scanf("%s", categoria);
+    getchar();
 
     printf("\nData (dd/mm/aaaa): ");
     scanf("%d/%d/%d",&data[0], &data[1], &data[2]);
+    getchar();
     dataValida(dia, mes, ano);
     while(!dataValida(data[0], data[1], data[2])){
     printf("\nData invalida! Digite novamente (dd/mm/aaaa): ");
@@ -172,15 +175,19 @@ void cadastraReceita (void) {
 
     printf("\nValor da receita: ");
     scanf("%f", &valor);
+    getchar();
 
     printf("\nDescricao: ");
     scanf("%s", descricao);
+    getchar();
 
     printf("\nCategoria: ");
     scanf("%s", categoria);
+    getchar();
 
     printf("\nData (dd/mm/aaaa): ");
     scanf("%d/%d/%d",&data[0], &data[1], &data[2]);
+    getchar();
     dataValida(dia, mes, ano);
     while(!dataValida(data[0], data[1], data[2])){
     printf("\nData invalida! Digite novamente (dd/mm/aaaa): ");
