@@ -8,7 +8,6 @@
 
 void cadastraCliente (void) {
 
-    char opcao2;
     char nome[100];
     int data[3];
     int dia = data[0];
@@ -92,7 +91,6 @@ void deletaCliente (void) {
 
 void cadastraDespesa (void) {
 
-    char opcao2;
     float valor;
     char descricao[1000];
     char categoria[100];
@@ -163,7 +161,6 @@ void deletaDespesa (void) {
 
 void cadastraReceita (void) {
 
-    char opcao2;
     float valor;
     char descricao[1000];
     char categoria[1000];
@@ -171,7 +168,6 @@ void cadastraReceita (void) {
     int dia = data[0];
     int mes = data[1];
     int ano = data[2];
-
 
     printf("\nValor da receita: ");
     scanf("%f", &valor);

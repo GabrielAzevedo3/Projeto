@@ -7,6 +7,8 @@
 
 // validações do menu cliente
 
+// função feita na monitoria
+
 int validaNome(char *nome) {
 
     int tam = strlen(nome);
@@ -21,9 +23,14 @@ int validaNome(char *nome) {
         }
         else if (isspace(letra)) {
         }
+        else {
+          return 1;
+        }
     }
     return 0;
 }
+
+// função feita pelo Professor Flavius
 
 int dataValida(int dia, int mes, int ano) {
     int maiorDia;
@@ -100,6 +107,13 @@ int validaEmail(char *email) {
 
 int validaCpf(char *cpf){
 
+  if ((strcmp(cpf,"00000000000") == 0) || (strcmp(cpf,"11111111111") == 0) 
+  || (strcmp(cpf,"22222222222") == 0) || (strcmp(cpf,"33333333333") == 0) 
+  || (strcmp(cpf,"44444444444") == 0) || (strcmp(cpf,"55555555555") == 0) 
+  || (strcmp(cpf,"66666666666") == 0) || (strcmp(cpf,"77777777777") == 0) 
+  || (strcmp(cpf,"88888888888") == 0) || (strcmp(cpf,"99999999999") == 0)) {
+    return 0;
+  }
 	int tamanho = strlen(cpf);
     if (tamanho != 11) {
         return 0;
@@ -150,5 +164,3 @@ int chartoint(char c){
 char inttochar(int n){
   return n + 48;
 }
-
-// validações do menu despesa
