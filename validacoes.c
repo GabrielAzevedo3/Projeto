@@ -164,3 +164,23 @@ int chartoint(char c){
 char inttochar(int n){
   return n + 48;
 }
+
+// validações do menu despesa
+
+int validaValor (char *valor) {
+  int tam = strlen(valor);
+  char verifica;
+  for (int i; i < tam; i++) {
+    verifica = valor[i];
+
+    if (isalpha(verifica)) {
+      return 1;
+    }
+    else if (isspace(verifica)) {
+      return 1;
+    }
+    else if (isdigit(verifica)) {
+    }
+  }
+  return 0;
+}

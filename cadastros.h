@@ -55,3 +55,7 @@ int chartoint(char);
 
 char inttochar(int);
 
+// assinatura da função validaValor
+
+int validaValor (char*);
+

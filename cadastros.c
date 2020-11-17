@@ -91,7 +91,7 @@ void deletaCliente (void) {
 
 void cadastraDespesa (void) {
 
-    float valor;
+    char valor[10];
     char descricao[1000];
     char categoria[100];
     int data[3];
@@ -100,9 +100,15 @@ void cadastraDespesa (void) {
     int ano = data[2];
 
 
-    printf("\nValor da despesa: ");
-    scanf("%f", &valor);
+    printf("\nDigite um valor: ");
+    scanf("%s",valor);
     getchar();
+    validaValor(valor);
+    while ((validaValor(valor))) {
+        printf("\nValor invalido. Digite um valor: ");
+        scanf("%s",valor);
+        getchar();
+    }
 
     printf("\nDescricao: ");
     scanf("%s", descricao);
@@ -117,8 +123,8 @@ void cadastraDespesa (void) {
     getchar();
     dataValida(dia, mes, ano);
     while(!dataValida(data[0], data[1], data[2])){
-    printf("\nData invalida! Digite novamente (dd/mm/aaaa): ");
-    scanf("%d/%d/%d",&data[0], &data[1], &data[2]);
+        printf("\nData invalida! Digite novamente (dd/mm/aaaa): ");
+        scanf("%d/%d/%d",&data[0], &data[1], &data[2]);
     }
 
     printf("\nDespesa cadastrada!\n");
@@ -161,7 +167,7 @@ void deletaDespesa (void) {
 
 void cadastraReceita (void) {
 
-    float valor;
+    char valorR[10];
     char descricao[1000];
     char categoria[1000];
     int data[3];
@@ -169,9 +175,15 @@ void cadastraReceita (void) {
     int mes = data[1];
     int ano = data[2];
 
-    printf("\nValor da receita: ");
-    scanf("%f", &valor);
+    printf("\nDigite um valor: ");
+    scanf("%s",valorR);
     getchar();
+    validaValor(valorR);
+    while ((validaValor(valorR))) {
+        printf("\nValor invalido. Digite um valor: ");
+        scanf("%s",valorR);
+        getchar();
+    }
 
     printf("\nDescricao: ");
     scanf("%s", descricao);
