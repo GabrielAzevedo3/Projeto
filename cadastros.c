@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "menus.h"
 #include "cadastros.h"
 #include <ctype.h>
@@ -8,21 +9,26 @@
 
 void cadastraCliente (void) {
 
-    char nome[100];
+    
+    char *nome;
     int data[3];
     int dia = data[0];
     int mes = data[1];
     int ano = data[2];
-    char email[50];
-    char cpf[15];
+    char *email;
+    char cpf[12];
+
+    int tam;
+    char linha[256];
 
     printf("\nDigite seu nome: ");
-    scanf("%s", nome); // função que pega tudo o que foi digitado
-    getchar();
-    validaNome(nome);
+    scanf(" %255[^\n]", linha);
+    tam = strlen(linha);
+    nome = (char*) malloc(tam+1);
+    strcpy(nome, linha);
     while((validaNome(nome))) {
         printf("Nome invalido, digite novamente: ");
-        gets(nome);
+        scanf(" %255[^\n]", nome);
     }
 
     printf("\nDigite sua data de nascimento (dd/mm/aaaa): ");
@@ -33,24 +39,28 @@ void cadastraCliente (void) {
     printf("\nData invalida! Digite novamente (dd/mm/aaaa): ");
     scanf("%d/%d/%d",&data[0], &data[1], &data[2]);
     }
-
+  
     printf("\nDigite seu email: ");
-    gets(email);
-    validaEmail(email);
+    scanf(" %255[^\n]", linha);
+    tam = strlen(linha);
+    email = (char*) malloc(tam+1);
+    strcpy(email, linha);
     while(!(validaEmail(email))){
         printf("Email invalido, digite novamente: ");
-        gets(email);
+        scanf(" %255[^\n]", email);
     }
 
     printf("\nDigite seu CPF: (xxxxxxxxxxx): ");
-    gets(cpf);
-    validaCpf(cpf);
+    scanf(" %12[^\n]", cpf);
     while(!(validaCpf(cpf))){
         printf("CPF invalido, digite novamente: ");
-        gets(cpf);
+        scanf(" %12[^\n]", cpf);
     }
-
+    free(email);
+    free(nome);
+    
     printf("\nUsuario cadastrado!\n");
+    getchar();
     pausaPrograma();
     menuCliente();
 }
@@ -111,12 +121,10 @@ void cadastraDespesa (void) {
     }
 
     printf("\nDescricao: ");
-    scanf("%s", descricao);
-    getchar();
-
+    fgets(descricao, 1000, stdin);
+    
     printf("\nCategoria: ");
-    scanf("%s", categoria);
-    getchar();
+    fgets(categoria, 100, stdin);
 
     printf("\nData (dd/mm/aaaa): ");
     scanf("%d/%d/%d",&data[0], &data[1], &data[2]);
@@ -186,12 +194,10 @@ void cadastraReceita (void) {
     }
 
     printf("\nDescricao: ");
-    scanf("%s", descricao);
-    getchar();
+    fgets(descricao, 1000, stdin);
 
     printf("\nCategoria: ");
-    scanf("%s", categoria);
-    getchar();
+    fgets(categoria, 100, stdin);
 
     printf("\nData (dd/mm/aaaa): ");
     scanf("%d/%d/%d",&data[0], &data[1], &data[2]);
