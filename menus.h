@@ -9,3 +9,10 @@ char menuDespesa (void);
 char menuReceita (void);
 char menuRelatorio (void);
 char menuSobre (void);
+
+// logos 
+
+void logoBomdia (void);
+void logoBoatarde (void);
+void logoBoanoite (void);
+

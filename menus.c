@@ -9,6 +9,7 @@ char mainMenu (void) {
 	char opcao;
     system("clear||cls");
     printf("\n\n");
+    horaAtual();
     printf(" $ $ $   MENU PRINCIPAL  $ $ $   \n");
     printf(" $                           $   \n");
     printf(" $     1. MENU CLIENTES      $   \n");
@@ -215,4 +216,40 @@ char menuSobre (void) {
     printf(" $                                                           $   \n");
     printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $   \n");
     printf("\n");
+}
+
+void logoBomdia (void) {
+
+    printf("\n\n");
+    printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $   \n");
+    printf(" $                                             $   \n");
+    printf(" $   BOM DIA, SEJA BEM-VINDO AO SIG-FINANCE    $   \n");
+    printf(" $                                             $   \n");
+    printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $   \n");
+    printf("\n\n");
+
+}
+
+void logoBoatarde(void) {
+
+    printf("\n\n");
+    printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $   \n");
+    printf(" $                                               $   \n");
+    printf(" $   BOA TARDE, SEJA BEM-VINDO AO SIG-FINANCE    $   \n");
+    printf(" $                                               $   \n");
+    printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $   \n");
+    printf("\n\n");
+    
+}
+
+void logoBoanoite(void) {
+
+    printf("\n\n");
+    printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $   \n");
+    printf(" $                                               $   \n");
+    printf(" $   BOA NOITE, SEJA BEM-VINDO AO SIG-FINANCE    $   \n");
+    printf(" $                                               $   \n");
+    printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $   \n");
+    printf("\n\n");
+    
 }

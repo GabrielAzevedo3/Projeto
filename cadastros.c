@@ -9,91 +9,78 @@
 
 void cadastraCliente (void) {
 
-    
-    char *nome;
-    int data[3];
-    int dia = data[0];
-    int mes = data[1];
-    int ano = data[2];
-    char *email;
-    char cpf[12];
-
-    int tam;
-    char linha[256];
+    Cliente* cli;
+    cli = (Cliente*) malloc(sizeof(Cliente));
 
     printf("\nDigite seu nome: ");
-    scanf(" %255[^\n]", linha);
-    tam = strlen(linha);
-    nome = (char*) malloc(tam+1);
-    strcpy(nome, linha);
-    while((validaNome(nome))) {
-        printf("Nome invalido, digite novamente: ");
-        scanf(" %255[^\n]", nome);
-    }
+    cli->nome = lelinha();
+    while (validaNome(cli->nome)) {
+	    printf("Nome invalido, digite novamente: ");    
+		cli->nome = lelinha();
+	}
 
     printf("\nDigite sua data de nascimento (dd/mm/aaaa): ");
-    scanf("%d/%d/%d",&data[0], &data[1], &data[2]);
+    scanf("%d/%d/%d",&cli->dia, &cli->mes, &cli->ano);
     getchar();
-    dataValida(dia, mes, ano);
-    while(!dataValida(data[0], data[1], data[2])){
+    while(!dataValida(cli->dia, cli->mes, cli->ano)){
     printf("\nData invalida! Digite novamente (dd/mm/aaaa): ");
-    scanf("%d/%d/%d",&data[0], &data[1], &data[2]);
-    }
-  
-    printf("\nDigite seu email: ");
-    scanf(" %255[^\n]", linha);
-    tam = strlen(linha);
-    email = (char*) malloc(tam+1);
-    strcpy(email, linha);
-    while(!(validaEmail(email))){
-        printf("Email invalido, digite novamente: ");
-        scanf(" %255[^\n]", email);
+        scanf("%d/%d/%d",&cli->dia, &cli->mes, &cli->ano);
+        getchar();
     }
 
-    printf("\nDigite seu CPF: (xxxxxxxxxxx): ");
-    scanf(" %12[^\n]", cpf);
-    while(!(validaCpf(cpf))){
+    printf("\nDigite seu e-mail: ");
+    cli->email = lelinha();
+    while(!(validaEmail(cli->email))){
+	    printf("E-mail invalido, digite novamente: ");    
+		cli->email = lelinha();
+	}
+
+    printf("\nDigite seu CPF: (apenas numeros): ");
+    scanf(" %12[^\n]", cli->cpf);
+    getchar();
+    while(!(validaCpf(cli->cpf))){
         printf("CPF invalido, digite novamente: ");
-        scanf(" %12[^\n]", cpf);
+        scanf(" %12[^\n]", cli->cpf);
+        getchar();
     }
-    free(email);
-    free(nome);
+    free(cli);
     
     printf("\nUsuario cadastrado!\n");
-    getchar();
     pausaPrograma();
     menuCliente();
 }
 
 void listaCliente (void) {
-    char opcao2;
+    
+    Cliente* cli;
+    cli = (Cliente*) malloc(sizeof(Cliente));
     printf("\nVocê entrou no Lista Cliente\n ");
-    printf("\nTecle ENTER para voltar");
-    opcao2 = getchar();
+    printf("\nLista de clientes\n");
+    /*printf("Nome: %s", cli->nome);
+    printf("E-mail: %s", cli->email);
+    printf("CPF: %s", &cli->cpf);*/
+    pausaPrograma();
     menuCliente();
 
 }
 
 void buscaCliente (void) {
-    char opcao2;
+
     printf("\nVocê entrou no Busca Cliente\n ");
-    printf("\nTecle ENTER para voltar");
-    opcao2 = getchar();
+    pausaPrograma();
     menuCliente();
 }
 void alteraCliente (void) {
-    char opcao2;
+   
     printf("\nVocê entrou no Altera Cliente\n ");
-    printf("\nTecle ENTER para voltar");
-    opcao2 = getchar();
+    pausaPrograma();
     menuCliente();
 }
 
 void deletaCliente (void) {
-    char opcao2;
+
     printf("\nVocê entrou no Deleta Cliente\n ");
-    printf("\nTecle ENTER para voltar");
-    opcao2 = getchar();
+    pausaPrograma();
     menuCliente();
 }
 
@@ -101,39 +88,34 @@ void deletaCliente (void) {
 
 void cadastraDespesa (void) {
 
-    char valor[10];
-    char descricao[1000];
-    char categoria[100];
-    int data[3];
-    int dia = data[0];
-    int mes = data[1];
-    int ano = data[2];
-
+    Despesa* des;
+    des = (Despesa*) malloc(sizeof(Despesa));
 
     printf("\nDigite um valor: ");
-    scanf("%s",valor);
+    scanf("%s",des->valor);
     getchar();
-    validaValor(valor);
-    while ((validaValor(valor))) {
+    validaValor(des->valor);
+    while ((validaValor(des->valor))) {
         printf("\nValor invalido. Digite um valor: ");
-        scanf("%s",valor);
+        scanf("%s",des->valor);
         getchar();
     }
 
     printf("\nDescricao: ");
-    fgets(descricao, 1000, stdin);
+    des->descricao = lelinha();
     
     printf("\nCategoria: ");
-    fgets(categoria, 100, stdin);
+    des->categoria = lelinha();
 
     printf("\nData (dd/mm/aaaa): ");
-    scanf("%d/%d/%d",&data[0], &data[1], &data[2]);
+    scanf("%d/%d/%d",&des->dia, &des->mes, &des->ano);
     getchar();
-    dataValida(dia, mes, ano);
-    while(!dataValida(data[0], data[1], data[2])){
+    while(!dataValida(des->dia, des->mes, des->ano)){
         printf("\nData invalida! Digite novamente (dd/mm/aaaa): ");
-        scanf("%d/%d/%d",&data[0], &data[1], &data[2]);
+        scanf("%d/%d/%d",&des->dia, &des->mes, &des->ano);
+        getchar();
     }
+    free(des);
 
     printf("\nDespesa cadastrada!\n");
     pausaPrograma();
@@ -141,33 +123,31 @@ void cadastraDespesa (void) {
 }
 
 void listaDespesa (void) {
-    char opcao2;
+ 
     printf("\nVocê entrou no Lista Despesa\n ");
-    printf("\nTecle ENTER para voltar");
-    opcao2 = getchar();
+    pausaPrograma();
     menuDespesa();
 }
 
 void buscaDespesa (void) {
     char opcao2;
     printf("\nVocê entrou no Busca Despesa\n ");
-    printf("\nTecle ENTER para voltar");
-    opcao2 = getchar();
+    pausaPrograma();
     menuDespesa();
 }
 void alteraDespesa (void) {
     char opcao2;
     printf("\nVocê entrou no Altera Despesa\n ");
-    printf("\nTecle ENTER para voltar");
-    opcao2 = getchar();
+
+    pausaPrograma();
     menuDespesa();
 }
 
 void deletaDespesa (void) {
     char opcao2;
     printf("\nVocê entrou no Deleta Despesa\n ");
-    printf("\nTecle ENTER para voltar");
-    opcao2 = getchar();
+
+    pausaPrograma();
     menuDespesa();
 }
 
@@ -175,38 +155,34 @@ void deletaDespesa (void) {
 
 void cadastraReceita (void) {
 
-    char valorR[10];
-    char descricao[1000];
-    char categoria[1000];
-    int data[3];
-    int dia = data[0];
-    int mes = data[1];
-    int ano = data[2];
+    Receita* res;
+    res = (Receita*) malloc(sizeof(Receita));
 
     printf("\nDigite um valor: ");
-    scanf("%s",valorR);
+    scanf("%s",res->valorR);
     getchar();
-    validaValor(valorR);
-    while ((validaValor(valorR))) {
+    validaValor(res->valorR);
+    while ((validaValor(res->valorR))) {
         printf("\nValor invalido. Digite um valor: ");
-        scanf("%s",valorR);
+        scanf("%s",res->valorR);
         getchar();
     }
 
     printf("\nDescricao: ");
-    fgets(descricao, 1000, stdin);
+    res->descricao = lelinha();
 
     printf("\nCategoria: ");
-    fgets(categoria, 100, stdin);
+    res->categoria = lelinha();
 
     printf("\nData (dd/mm/aaaa): ");
-    scanf("%d/%d/%d",&data[0], &data[1], &data[2]);
+    scanf("%d/%d/%d",&res->dia, &res->mes, &res->ano);
     getchar();
-    dataValida(dia, mes, ano);
-    while(!dataValida(data[0], data[1], data[2])){
-    printf("\nData invalida! Digite novamente (dd/mm/aaaa): ");
-    scanf("%d/%d/%d",&data[0], &data[1], &data[2]);
+    while(!dataValida(res->dia, res->mes, res->ano)){
+        printf("\nData invalida! Digite novamente (dd/mm/aaaa): ");
+        scanf("%d/%d/%d",&res->dia, &res->mes, &res->ano);
+        getchar();
     }
+    free(res);
 
     printf("\nReceita cadastrada!\n");
     pausaPrograma();
@@ -216,31 +192,30 @@ void cadastraReceita (void) {
 void listaReceita (void) {
     char opcao2;
     printf("\nVocê entrou no Lista Receita\n ");
-    printf("\nTecle ENTER para voltar");
-    opcao2 = getchar();
+    pausaPrograma();
     menuReceita();
 }
 
 void buscaReceita (void) {
     char opcao2;
     printf("\nVocê entrou no Busca Receita\n ");
-    printf("\nTecle ENTER para voltar");
-    opcao2 = getchar();
+
+    pausaPrograma();
     menuReceita();
 }
 void alteraReceita (void) {
     char opcao2;
     printf("\nVocê entrou no Altera Receita\n ");
-    printf("\nTecle ENTER para voltar");
-    opcao2 = getchar();
+
+    pausaPrograma();
     menuReceita();
 }
 
 void deletaReceita (void) {
     char opcao2;
     printf("\nVocê entrou no Deleta Receita\n ");
-    printf("\nTecle ENTER para voltar");
-    opcao2 = getchar();
+
+    pausaPrograma();
     menuReceita();
 }
 
@@ -249,40 +224,40 @@ void deletaReceita (void) {
 void relatorioDiario (void) {
     char opcao2;
     printf("\nVocê entrou no Relatorio Diario\n ");
-    printf("\nTecle ENTER para voltar");
-    opcao2 = getchar();
+
+    pausaPrograma();
     menuRelatorio();
 }
 
 void relatorioSemanal (void) {
     char opcao2;
     printf("\nVocê entrou no Relatorio Semanal\n ");
-    printf("\nTecle ENTER para voltar");
-    opcao2 = getchar();
+
+    pausaPrograma();
     menuRelatorio();
 }
 
 void relatorioMensal (void) {
     char opcao2;
     printf("\nVocê entrou no Relatorio Mensal\n ");
-    printf("\nTecle ENTER para voltar");
-    opcao2 = getchar();
+
+    pausaPrograma();
     menuRelatorio();
 }
 
 void relatorioAnual (void) {
     char opcao2;
     printf("\nVocê entrou no Relatorio Anual\n ");
-    printf("\nTecle ENTER para voltar");
-    opcao2 = getchar();
+
+    pausaPrograma();
     menuRelatorio();
 }
 
 void escolherPeriodo (void) {
     char opcao2;
     printf("\nVocê entrou no Escolher Periodo\n ");
-    printf("\nTecle ENTER para voltar");
-    opcao2 = getchar();
+
+    pausaPrograma();
     menuRelatorio();
 }
 

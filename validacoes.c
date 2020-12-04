@@ -4,6 +4,7 @@
 #include "cadastros.h"
 #include <ctype.h>
 #include <string.h>
+#include <time.h>
 
 // validações do menu cliente
 
@@ -30,11 +31,12 @@ int validaNome(char *nome) {
     return 0;
 }
 
-// função feita pelo Professor Flavius
+// função feita pelo Professor Flavius, com algumas implementações
 
 int dataValida(int dia, int mes, int ano) {
     int maiorDia;
-    if (dia < 1 || mes < 1 || mes > 12 || ano < 0) {
+    int aA = anoAtual();
+    if (dia < 1 || mes < 1 || mes > 12 || ano < 0 || ano > aA) {
         return 0;
     }
     if (mes == 2 ) {
@@ -183,4 +185,51 @@ int validaValor (char *valor) {
     }
   }
   return 0;
+}
+
+// função feita pelo Professor Flavius
+
+char* lelinha(void) {
+
+	int tam;
+	char linha[256];
+	char *novalinha;
+	scanf(" %255[^\n]", linha);
+	tam = strlen(linha) + 1;
+	novalinha = (char*) malloc(tam * sizeof(char));
+	strcpy(novalinha, linha);
+	return novalinha;
+
+}
+
+// funções desenvolvidas com base no site: https://ideone.com/Lv1ufO
+
+int anoAtual (void) {
+
+  time_t timer;
+  struct tm *horarioLocal;
+  time(&timer); // Obtem informações de data e hora
+  horarioLocal = localtime(&timer); // Converte a data atual para a data local
+  int ano = horarioLocal->tm_year + 1900;
+  return ano;
+
+}
+
+void horaAtual (void) {
+
+  time_t timer;
+  struct tm *horarioLocal;
+  time(&timer); // Obtem informações de data e hora
+  horarioLocal = localtime(&timer); // Converte a hora atual para a hora local
+  int hora = horarioLocal->tm_hour;
+  int min  = horarioLocal->tm_min;
+  int sec  = horarioLocal->tm_sec;
+  if (hora >= 0 && hora < 12) {
+    logoBomdia();
+  } else if (hora >= 12 && hora < 18) {
+    logoBoatarde();
+  } else {
+    logoBoanoite();
+  }
+
 }

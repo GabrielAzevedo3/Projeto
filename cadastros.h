@@ -1,3 +1,47 @@
+// definições das estruturas
+
+typedef struct cliente Cliente;
+typedef struct despesa Despesa;
+typedef struct receita Receita;
+
+// estruturas 
+
+struct cliente {
+
+    char *nome;
+    int dia;
+    int mes;
+    int ano;
+    char *email;
+    char cpf[12];
+
+};
+
+struct despesa {
+
+    char valor[10];
+    char *descricao;
+    char *categoria;
+    int dia;
+    int mes;
+    int ano;
+};
+
+struct receita {
+
+    char valorR[10];
+    char *descricao;
+    char *categoria;
+    int dia;
+    int mes;
+    int ano;
+
+};
+
+// assinatura da função que aloca memória
+
+char* lelinha(void);
+
 // assinatura das funções do menu Cliente
 
 void cadastraCliente (void);
@@ -43,6 +87,8 @@ int validaNome (char*);
 int dataValida(int, int, int);
 int bissexto(int);
 
+int anoAtual (void); // função que pega o ano atual
+
 // assinatura da função validaEmail
 
 int validaEmail(char*);
@@ -59,3 +105,6 @@ char inttochar(int);
 
 int validaValor (char*);
 
+// função que pega a hora atual
+
+void horaAtual(void);
