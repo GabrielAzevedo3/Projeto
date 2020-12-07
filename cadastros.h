@@ -1,5 +1,6 @@
 // definições das estruturas
 
+typedef struct cliente ClienteA;
 typedef struct cliente Cliente;
 typedef struct despesa Despesa;
 typedef struct receita Receita;
@@ -7,6 +8,17 @@ typedef struct receita Receita;
 // estruturas 
 
 struct cliente {
+
+    char nome[80];
+    int dia;
+    int mes;
+    int ano;
+    char email[50];
+    char cpf[12];
+
+};
+
+struct clienteA {
 
     char *nome;
     int dia;
@@ -16,6 +28,7 @@ struct cliente {
     char cpf[12];
 
 };
+
 
 struct despesa {
 

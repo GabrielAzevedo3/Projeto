@@ -12,12 +12,28 @@ void cadastraCliente (void) {
     Cliente* cli;
     cli = (Cliente*) malloc(sizeof(Cliente));
 
+    FILE *fp;
+    fp = fopen("clientes.dat", "wb");
+    if (fp == NULL){
+        printf("\nErro na criacao do arquivo\n!");
+    }
+
+
+/*
     printf("\nDigite seu nome: ");
     cli->nome = lelinha();
     while (validaNome(cli->nome)) {
 	    printf("Nome invalido, digite novamente: ");    
 		cli->nome = lelinha();
-	}
+	} 
+*/  
+    
+    printf("\nDigite seu nome: ");
+    scanf(" %80[^\n]", cli->nome);
+    while((validaNome(cli->nome))) {
+        printf("Nome invalido, digite novamente: ");
+        scanf(" %80[^\n]", cli->nome); 
+    }
 
     printf("\nDigite sua data de nascimento (dd/mm/aaaa): ");
     scanf("%d/%d/%d",&cli->dia, &cli->mes, &cli->ano);
@@ -27,12 +43,19 @@ void cadastraCliente (void) {
         scanf("%d/%d/%d",&cli->dia, &cli->mes, &cli->ano);
         getchar();
     }
-
+/*
     printf("\nDigite seu e-mail: ");
     cli->email = lelinha();
     while(!(validaEmail(cli->email))){
 	    printf("E-mail invalido, digite novamente: ");    
 		cli->email = lelinha();
+	}
+*/
+    printf("\nDigite seu e-mail: ");
+    scanf(" %50[^\n]", cli->email);
+    while(!(validaEmail(cli->email))){
+	    printf("E-mail invalido, digite novamente: ");    
+		scanf(" %50[^\n]", cli->email);
 	}
 
     printf("\nDigite seu CPF: (apenas numeros): ");
@@ -44,6 +67,9 @@ void cadastraCliente (void) {
         getchar();
     }
     free(cli);
+
+    fwrite(cli, sizeof(Cliente), 1, fp);
+    fclose(fp);
     
     printf("\nUsuario cadastrado!\n");
     pausaPrograma();
@@ -54,11 +80,28 @@ void listaCliente (void) {
     
     Cliente* cli;
     cli = (Cliente*) malloc(sizeof(Cliente));
-    printf("\nVocê entrou no Lista Cliente\n ");
-    printf("\nLista de clientes\n");
-    /*printf("Nome: %s", cli->nome);
-    printf("E-mail: %s", cli->email);
-    printf("CPF: %s", &cli->cpf);*/
+
+    FILE* fp;
+    fp = fopen("clientes.dat", "rb");
+    if (fp == NULL){
+        printf("\nErro na abertura do arquivo\n!");
+    }
+    fread(cli, sizeof(Cliente), 1, fp);
+    fclose(fp);
+
+    system("clear||cls");
+    printf("\n\n");
+    printf(" $ $ $   LISTA DE CLIENTES   $ $ $   \n");
+    printf(" $                               $   \n");
+    printf(" $    Nome: %s\n", cli->nome);
+    printf(" $    Data de nascimento: %d/%d/%d\n", cli->dia, cli->mes, cli->ano);
+    printf(" $    E-mail: %s\n", cli->email);
+    printf(" $    CPF: %s\n", cli->cpf);
+    printf(" $                               $   \n");
+    printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $  \n");
+    printf("\n\n");
+
+
     pausaPrograma();
     menuCliente();
 
