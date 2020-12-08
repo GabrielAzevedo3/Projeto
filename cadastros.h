@@ -2,7 +2,9 @@
 
 typedef struct cliente ClienteA;
 typedef struct cliente Cliente;
+typedef struct despesa DespesaA;
 typedef struct despesa Despesa;
+typedef struct receita ReceitaA;
 typedef struct receita Receita;
 
 // estruturas 
@@ -29,8 +31,17 @@ struct clienteA {
 
 };
 
-
 struct despesa {
+
+    char valor[10];
+    char descricao[500];
+    char categoria[15];
+    int dia;
+    int mes;
+    int ano;
+};
+
+struct despesaA {
 
     char valor[10];
     char *descricao;
@@ -43,6 +54,17 @@ struct despesa {
 struct receita {
 
     char valorR[10];
+    char descricaoR[500];
+    char categoriaR[15];
+    int dia;
+    int mes;
+    int ano;
+
+};
+
+struct receitaA {
+
+    char valor[10];
     char *descricao;
     char *categoria;
     int dia;

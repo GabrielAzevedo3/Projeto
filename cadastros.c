@@ -86,8 +86,7 @@ void listaCliente (void) {
     if (fp == NULL){
         printf("\nErro na abertura do arquivo\n!");
     }
-    fread(cli, sizeof(Cliente), 1, fp);
-    fclose(fp);
+
 
     system("clear||cls");
     printf("\n\n");
@@ -101,6 +100,8 @@ void listaCliente (void) {
     printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $  \n");
     printf("\n\n");
 
+    fread(cli, sizeof(Cliente), 1, fp);
+    fclose(fp);
 
     pausaPrograma();
     menuCliente();
@@ -134,21 +135,29 @@ void cadastraDespesa (void) {
     Despesa* des;
     des = (Despesa*) malloc(sizeof(Despesa));
 
+    FILE *fp;
+    fp = fopen("despesas.dat", "wb");
+    if (fp == NULL){
+        printf("\nErro na criacao do arquivo\n!");
+    }
+
     printf("\nDigite um valor: ");
-    scanf("%s",des->valor);
-    getchar();
-    validaValor(des->valor);
+    scanf("%10[^\n]",des->valor);
+    //getchar();
+    //validaValor(des->valor);
     while ((validaValor(des->valor))) {
         printf("\nValor invalido. Digite um valor: ");
-        scanf("%s",des->valor);
-        getchar();
+        scanf("%10[^\n]",des->valor);
+        //getchar();
     }
 
     printf("\nDescricao: ");
-    des->descricao = lelinha();
+    scanf(" %500[^\n]", des->descricao);
+    //des->descricao = lelinha();
     
     printf("\nCategoria: ");
-    des->categoria = lelinha();
+    scanf(" %15[^\n]", des->categoria);
+    //des->categoria = lelinha();
 
     printf("\nData (dd/mm/aaaa): ");
     scanf("%d/%d/%d",&des->dia, &des->mes, &des->ano);
@@ -160,14 +169,42 @@ void cadastraDespesa (void) {
     }
     free(des);
 
+    fwrite(des, sizeof(Despesa), 1, fp);
+    fclose(fp);
+
     printf("\nDespesa cadastrada!\n");
     pausaPrograma();
     menuDespesa();
 }
 
 void listaDespesa (void) {
+
+    Despesa* des;
+    des = (Despesa*) malloc(sizeof(Despesa));
+
+    FILE *fp;
+    fp = fopen("despesas.dat", "rb");
+    if (fp == NULL){
+        printf("\nErro na criacao do arquivo\n!");
+    }
  
-    printf("\nVocê entrou no Lista Despesa\n ");
+    system("clear||cls");
+    printf("\n\n");
+    printf(" $ $ $   LISTA DE DESPESAS   $ $ $   \n");
+    printf(" $                               $   \n");
+    printf(" $    Valor: %s\n", des->valor);
+    printf(" $    Descricao: %s\n", des->descricao);
+    printf(" $    Categoria: %s\n", des->categoria);
+    printf(" $    Data de nascimento: %d/%d/%d\n", des->dia, des->mes, des->ano);
+    printf(" $                               $   \n");
+    printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $  \n");
+    printf("\n\n");
+
+    free(des);
+
+    fread(des, sizeof(Despesa), 1, fp);
+    fclose(fp);
+
     pausaPrograma();
     menuDespesa();
 }
@@ -201,21 +238,38 @@ void cadastraReceita (void) {
     Receita* res;
     res = (Receita*) malloc(sizeof(Receita));
 
+    FILE *fp;
+    fp = fopen("receitas.dat", "wb");
+    if (fp == NULL){
+        printf("\nErro na criacao do arquivo\n!");
+    }
+/*
     printf("\nDigite um valor: ");
-    scanf("%s",res->valorR);
-    getchar();
-    validaValor(res->valorR);
+    scanf("%10[^\n]",res->valorR);
     while ((validaValor(res->valorR))) {
         printf("\nValor invalido. Digite um valor: ");
-        scanf("%s",res->valorR);
-        getchar();
+        scanf("%10[^\n]",res->valorR);
+
     }
 
     printf("\nDescricao: ");
-    res->descricao = lelinha();
-
+    scanf("% 500[^\n]", res->descricaoR);
+    
     printf("\nCategoria: ");
-    res->categoria = lelinha();
+    scanf("% 15[^\n]", res->categoriaR);      */
+
+    printf("\nDigite um valor: ");
+    scanf("%10[^\n]",res->valorR);
+    while ((validaValor(res->valorR))) {
+        printf("\nValor invalido. Digite um valor: ");
+        scanf("%10[^\n]",res->valorR);
+    }
+
+    printf("\nDescricao: ");
+    scanf(" %500[^\n]", res->descricaoR);
+    
+    printf("\nCategoria: ");
+    scanf(" %15[^\n]", res->categoriaR);
 
     printf("\nData (dd/mm/aaaa): ");
     scanf("%d/%d/%d",&res->dia, &res->mes, &res->ano);
@@ -227,27 +281,55 @@ void cadastraReceita (void) {
     }
     free(res);
 
+    fwrite(res, sizeof(Receita), 1, fp);
+    fclose(fp);
+
     printf("\nReceita cadastrada!\n");
     pausaPrograma();
     menuReceita();
 }
 
 void listaReceita (void) {
-    char opcao2;
-    printf("\nVocê entrou no Lista Receita\n ");
+
+    Receita* res;
+    res = (Receita*) malloc(sizeof(Receita));
+
+    FILE *fp;
+    fp = fopen("receitas.dat", "rb");
+    if (fp == NULL){
+        printf("\nErro na criacao do arquivo\n!");
+    }
+ 
+    system("clear||cls");
+    printf("\n\n");
+    printf(" $ $ $   LISTA DE RECEITAS   $ $ $   \n");
+    printf(" $                               $   \n");
+    printf(" $    Valor: %s\n", res->valorR);
+    printf(" $    Descricao: %s\n", res->descricaoR);
+    printf(" $    Categoria: %s\n", res->categoriaR);
+    printf(" $    Data de nascimento: %d/%d/%d\n", res->dia, res->mes, res->ano);
+    printf(" $                               $   \n");
+    printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $  \n");
+    printf("\n\n");
+
+    free(res);
+
+    fread(res, sizeof(Receita), 1, fp);
+    fclose(fp);
+    
     pausaPrograma();
     menuReceita();
 }
 
 void buscaReceita (void) {
-    char opcao2;
+    
     printf("\nVocê entrou no Busca Receita\n ");
 
     pausaPrograma();
     menuReceita();
 }
 void alteraReceita (void) {
-    char opcao2;
+    
     printf("\nVocê entrou no Altera Receita\n ");
 
     pausaPrograma();
@@ -255,7 +337,7 @@ void alteraReceita (void) {
 }
 
 void deletaReceita (void) {
-    char opcao2;
+    
     printf("\nVocê entrou no Deleta Receita\n ");
 
     pausaPrograma();
@@ -265,7 +347,7 @@ void deletaReceita (void) {
 // funções do menu Relatorio
 
 void relatorioDiario (void) {
-    char opcao2;
+    
     printf("\nVocê entrou no Relatorio Diario\n ");
 
     pausaPrograma();
@@ -273,7 +355,7 @@ void relatorioDiario (void) {
 }
 
 void relatorioSemanal (void) {
-    char opcao2;
+    
     printf("\nVocê entrou no Relatorio Semanal\n ");
 
     pausaPrograma();
@@ -281,7 +363,7 @@ void relatorioSemanal (void) {
 }
 
 void relatorioMensal (void) {
-    char opcao2;
+    
     printf("\nVocê entrou no Relatorio Mensal\n ");
 
     pausaPrograma();
@@ -289,7 +371,7 @@ void relatorioMensal (void) {
 }
 
 void relatorioAnual (void) {
-    char opcao2;
+    
     printf("\nVocê entrou no Relatorio Anual\n ");
 
     pausaPrograma();
@@ -297,7 +379,7 @@ void relatorioAnual (void) {
 }
 
 void escolherPeriodo (void) {
-    char opcao2;
+    
     printf("\nVocê entrou no Escolher Periodo\n ");
 
     pausaPrograma();
