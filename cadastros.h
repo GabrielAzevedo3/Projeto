@@ -1,6 +1,6 @@
 // definições das estruturas
 
-typedef struct cliente ClienteA;
+//typedef struct cliente ClienteA;
 typedef struct cliente Cliente;
 typedef struct despesa DespesaA;
 typedef struct despesa Despesa;
@@ -19,7 +19,7 @@ struct cliente {
     char cpf[12];
 
 };
-
+/*
 struct clienteA {
 
     char *nome;
@@ -30,7 +30,7 @@ struct clienteA {
     char cpf[12];
 
 };
-
+*/
 struct despesa {
 
     char valor[10];

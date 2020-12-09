@@ -13,10 +13,11 @@ void cadastraCliente (void) {
     cli = (Cliente*) malloc(sizeof(Cliente));
 
     FILE *fp;
-    fp = fopen("clientes.dat", "wb");
+    fp = fopen("clientes.dat", "wt");
     if (fp == NULL){
         printf("\nErro na criacao do arquivo\n!");
     }
+
 
 
 /*
@@ -66,18 +67,19 @@ void cadastraCliente (void) {
         scanf(" %12[^\n]", cli->cpf);
         getchar();
     }
-    free(cli);
-
+    
     fwrite(cli, sizeof(Cliente), 1, fp);
     fclose(fp);
-    
+    free(cli);
+
     printf("\nUsuario cadastrado!\n");
     pausaPrograma();
     menuCliente();
 }
 
 void listaCliente (void) {
-    
+
+    system("clear||cls");
     Cliente* cli;
     cli = (Cliente*) malloc(sizeof(Cliente));
 
@@ -86,9 +88,10 @@ void listaCliente (void) {
     if (fp == NULL){
         printf("\nErro na abertura do arquivo\n!");
     }
+    fread(cli, sizeof(Cliente), 1, fp);
+    fclose(fp);
 
 
-    system("clear||cls");
     printf("\n\n");
     printf(" $ $ $   LISTA DE CLIENTES   $ $ $   \n");
     printf(" $                               $   \n");
@@ -100,8 +103,8 @@ void listaCliente (void) {
     printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $  \n");
     printf("\n\n");
 
-    fread(cli, sizeof(Cliente), 1, fp);
-    fclose(fp);
+    
+    
 
     pausaPrograma();
     menuCliente();
@@ -141,6 +144,7 @@ void cadastraDespesa (void) {
         printf("\nErro na criacao do arquivo\n!");
     }
 
+
     printf("\nDigite um valor: ");
     scanf("%10[^\n]",des->valor);
     //getchar();
@@ -167,10 +171,11 @@ void cadastraDespesa (void) {
         scanf("%d/%d/%d",&des->dia, &des->mes, &des->ano);
         getchar();
     }
-    free(des);
-
     fwrite(des, sizeof(Despesa), 1, fp);
     fclose(fp);
+    free(des);
+
+    
 
     printf("\nDespesa cadastrada!\n");
     pausaPrograma();
@@ -187,6 +192,8 @@ void listaDespesa (void) {
     if (fp == NULL){
         printf("\nErro na criacao do arquivo\n!");
     }
+    fread(des, sizeof(Despesa), 1, fp);
+    fclose(fp);
  
     system("clear||cls");
     printf("\n\n");
@@ -202,8 +209,8 @@ void listaDespesa (void) {
 
     free(des);
 
-    fread(des, sizeof(Despesa), 1, fp);
-    fclose(fp);
+    
+    
 
     pausaPrograma();
     menuDespesa();
@@ -279,10 +286,11 @@ void cadastraReceita (void) {
         scanf("%d/%d/%d",&res->dia, &res->mes, &res->ano);
         getchar();
     }
-    free(res);
-
     fwrite(res, sizeof(Receita), 1, fp);
     fclose(fp);
+    free(res);
+
+
 
     printf("\nReceita cadastrada!\n");
     pausaPrograma();
@@ -299,6 +307,7 @@ void listaReceita (void) {
     if (fp == NULL){
         printf("\nErro na criacao do arquivo\n!");
     }
+    fread(res, sizeof(Receita), 1, fp);
  
     system("clear||cls");
     printf("\n\n");
@@ -314,7 +323,7 @@ void listaReceita (void) {
 
     free(res);
 
-    fread(res, sizeof(Receita), 1, fp);
+    
     fclose(fp);
     
     pausaPrograma();
