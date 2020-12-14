@@ -1,10 +1,7 @@
 // definições das estruturas
 
-//typedef struct cliente ClienteA;
 typedef struct cliente Cliente;
-typedef struct despesa DespesaA;
 typedef struct despesa Despesa;
-typedef struct receita ReceitaA;
 typedef struct receita Receita;
 
 // estruturas 
@@ -17,20 +14,10 @@ struct cliente {
     int ano;
     char email[50];
     char cpf[12];
+    char status;
 
 };
-/*
-struct clienteA {
 
-    char *nome;
-    int dia;
-    int mes;
-    int ano;
-    char *email;
-    char cpf[12];
-
-};
-*/
 struct despesa {
 
     char valor[10];
@@ -41,32 +28,11 @@ struct despesa {
     int ano;
 };
 
-struct despesaA {
-
-    char valor[10];
-    char *descricao;
-    char *categoria;
-    int dia;
-    int mes;
-    int ano;
-};
-
 struct receita {
 
     char valorR[10];
     char descricaoR[500];
     char categoriaR[15];
-    int dia;
-    int mes;
-    int ano;
-
-};
-
-struct receitaA {
-
-    char valor[10];
-    char *descricao;
-    char *categoria;
     int dia;
     int mes;
     int ano;
@@ -84,6 +50,9 @@ void listaCliente (void);
 void buscaCliente (void);
 void alteraCliente (void);
 void deletaCliente (void);
+
+
+void exibeCliente(Cliente*);
 
 // assinatura das funções do menu Despesa
 
