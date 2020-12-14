@@ -17,15 +17,20 @@ int validaNome(char *nome) {
     for (int i = 0; i < tam; i++)
     {
         letra = nome[i];
-        if (isdigit(letra)) {
+        if (letra == '!' || letra == '@' || letra == '#' || letra == '$' || letra == '%' 
+         || letra == '&' || letra == '*' || letra == '(' || letra == ')' || letra == '"'
+         || letra == '+' || letra == '-' || letra == '_' || letra == '^' || letra == '~'
+         || letra == '.' || letra == ',' || letra == '[' || letra == ']' || letra == '{'
+         || letra == '}' || letra == ':' || letra == ';' || letra == '=' || letra == '>'
+         || letra == '>' || letra == '?' || letra == '|' || letra == '/' ) {
+          return 1;
+        }
+        else if (isdigit(letra)) {
             return 1;
         }
         else if (isalpha(letra)) {
         }
         else if (isspace(letra)) {
-        }
-        else {
-          return 1;
         }
     }
     return 0;
