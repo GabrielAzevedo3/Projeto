@@ -13,7 +13,7 @@ void cadastraCliente (void) {
     cli = (Cliente*) malloc(sizeof(Cliente));
 
     FILE *fp;
-    fp = fopen("clientes.dat", "at");
+    fp = fopen("clientes.dat", "ab");
     if (fp == NULL){
         printf("\nErro na criacao do arquivo\n!");
     }
@@ -87,7 +87,7 @@ void listaCliente (void) {
             printf(" $                               $   \n");
             printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $  \n");
             printf("\n\n");
-        }
+        }        
     }
     fclose(fp);
     free(cli);
@@ -109,11 +109,11 @@ void buscaCliente (void) {
         printf("\nErro na abertura do arquivo\n!");
     }
 
-    printf("Digite o nome do usuario que esta buscando: ");
+    printf("Digite o CPF do usuario que esta buscando: ");
     scanf(" %80[^\n]", procurado);
     cli = (Cliente*) malloc(sizeof(Cliente));
     while ((!achou) && (fread(cli, sizeof(Cliente), 1, fp))) {
-        if (strcmp(cli->nome, procurado) == 0 && (cli->status == '1')) {
+        if (strcmp(cli->cpf, procurado) == 0 && (cli->status == '1')) {
             achou = 1;
         }
     }
@@ -129,9 +129,87 @@ void buscaCliente (void) {
     pausaPrograma();
     menuCliente();
 }
+
 void alteraCliente (void) {
    
-    printf("\nVocê entrou no Altera Cliente\n ");
+    system("clear||cls");
+    FILE* fp;
+    Cliente* cli;
+    int achou = 0;
+    char resp;
+    char procurado[13];
+    fp = fopen("clientes.dat", "r+b");
+    if (fp == NULL){
+        printf("\nErro na abertura do arquivo\n!");
+    }
+
+    printf("Digite o CPF do usuario que deseja alterar: ");
+    scanf(" %12[^\n]", procurado);
+    getchar();
+    cli = (Cliente*) malloc(sizeof(Cliente));
+
+    while ((!achou) && (fread(cli, sizeof(Cliente), 1, fp))) {
+        if (strcmp(cli->cpf, procurado) == 0 && (cli->status == '1')) {
+            achou = 1;
+        }
+    }
+    if (achou) {
+        exibeCliente(cli);
+        printf("\nDeseja realmente alterar esse cliente? (s = sim n = nao) ");
+        scanf(" %c",&resp);
+        getchar();
+        if(resp == 's' || resp == 'S'){
+
+            printf("\nDigite seu nome: ");
+            scanf(" %80[^\n]", cli->nome);
+            while((validaNome(cli->nome))) {
+                printf("Nome invalido, digite novamente: ");
+                scanf(" %80[^\n]", cli->nome); 
+            }
+
+            printf("\nDigite sua data de nascimento (dd/mm/aaaa): ");
+            scanf("%d/%d/%d",&cli->dia, &cli->mes, &cli->ano);
+            getchar();
+            while(!dataValida(cli->dia, cli->mes, cli->ano)){
+            printf("\nData invalida! Digite novamente (dd/mm/aaaa): ");
+                scanf("%d/%d/%d",&cli->dia, &cli->mes, &cli->ano);
+                getchar();
+            }
+
+            printf("\nDigite seu e-mail: ");
+            scanf(" %50[^\n]", cli->email);
+            while(!(validaEmail(cli->email))){
+                printf("E-mail invalido, digite novamente: ");    
+                scanf(" %50[^\n]", cli->email);
+            }
+
+            printf("\nDigite seu CPF: (apenas numeros): ");
+            scanf(" %12[^\n]", cli->cpf);
+            getchar();
+            while(!(validaCpf(cli->cpf))){
+                printf("CPF invalido, digite novamente: ");
+                scanf(" %12[^\n]", cli->cpf);
+                getchar();
+            }
+
+            cli->status = '1';
+            fseek(fp, -1*sizeof(Cliente), SEEK_CUR);
+            fwrite(cli, sizeof(Cliente), 1, fp);
+            printf("\ncliente alterado\n");
+        }
+        else {
+            printf("\nOs dados nao foram alterados\n");
+        }
+    }
+    else {
+
+        printf("\nNenhum cliente com o CPF %s esta cadastrado\n", procurado);
+    }
+    
+    fclose(fp);
+    free(cli);
+
+    //getchar();
     pausaPrograma();
     menuCliente();
 }
@@ -144,7 +222,7 @@ void deletaCliente (void) {
     int achou = 0;
     char resp;
     char procurado[13];
-    fp = fopen("clientes.dat", "rb");
+    fp = fopen("clientes.dat", "r+b");
     if (fp == NULL){
         printf("\nErro na abertura do arquivo\n!");
     }
@@ -161,7 +239,7 @@ void deletaCliente (void) {
     if(achou){
 
         exibeCliente(cli);
-        printf("\nDeseja realmente deletar esse cliente? (S = sim N = nao) ");
+        printf("\nDeseja realmente deletar esse cliente? (s = sim n = nao) ");
         scanf(" %c",&resp);
         if(resp == 's' || resp == 'S'){
 
@@ -172,17 +250,18 @@ void deletaCliente (void) {
 
         } else{
 
-             printf("\nAcao interrompida.\n");
+             printf("\nCliente nao deletado\n");
 
         }
     } 
     else{
 
-        printf("Aparentemente, nenhum cliente com o CPF %s esta cadastrado. \n", procurado);
+        printf("\nNenhum cliente com o CPF %s esta cadastrado\n", procurado);
     }
-
+    
     fclose(fp);
     free(cli);
+    
 
     getchar();
     pausaPrograma();
@@ -213,7 +292,7 @@ void cadastraDespesa (void) {
     des = (Despesa*) malloc(sizeof(Despesa));
 
     FILE *fp;
-    fp = fopen("despesas.dat", "wb");
+    fp = fopen("despesas.dat", "ab");
     if (fp == NULL){
         printf("\nErro na criacao do arquivo\n!");
     }
@@ -245,6 +324,8 @@ void cadastraDespesa (void) {
         scanf("%d/%d/%d",&des->dia, &des->mes, &des->ano);
         getchar();
     }
+    des->status = '1';
+
     fwrite(des, sizeof(Despesa), 1, fp);
     fclose(fp);
     free(des);
@@ -258,6 +339,7 @@ void cadastraDespesa (void) {
 
 void listaDespesa (void) {
 
+    system("clear||cls");
     Despesa* des;
     des = (Despesa*) malloc(sizeof(Despesa));
 
@@ -266,33 +348,40 @@ void listaDespesa (void) {
     if (fp == NULL){
         printf("\nErro na criacao do arquivo\n!");
     }
-    fread(des, sizeof(Despesa), 1, fp);
+    while (fread(des, sizeof(Despesa), 1, fp)) {
+        if (des->status == '1') {
+
+            printf("\n\n");
+            printf(" $ $ $   LISTA DE DESPESAS   $ $ $   \n");
+            printf(" $                               $   \n");
+            printf(" $    Valor: %s\n", des->valor);
+            printf(" $    Descricao: %s\n", des->descricao);
+            printf(" $    Categoria: %s\n", des->categoria);
+            printf(" $    Data de nascimento: %d/%d/%d\n", des->dia, des->mes, des->ano);
+            printf(" $                               $   \n");
+            printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $  \n");
+            printf("\n\n");
+        }
+    }
     fclose(fp);
- 
-    system("clear||cls");
-    printf("\n\n");
-    printf(" $ $ $   LISTA DE DESPESAS   $ $ $   \n");
-    printf(" $                               $   \n");
-    printf(" $    Valor: %s\n", des->valor);
-    printf(" $    Descricao: %s\n", des->descricao);
-    printf(" $    Categoria: %s\n", des->categoria);
-    printf(" $    Data de nascimento: %d/%d/%d\n", des->dia, des->mes, des->ano);
-    printf(" $                               $   \n");
-    printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $  \n");
-    printf("\n\n");
-
     free(des);
-
-    
-    
 
     pausaPrograma();
     menuDespesa();
 }
 
 void buscaDespesa (void) {
-    char opcao2;
-    printf("\nVocê entrou no Busca Despesa\n ");
+
+    system("clear||cls");
+    Despesa* des;
+    des = (Despesa*) malloc(sizeof(Despesa));
+
+    FILE *fp;
+    fp = fopen("despesas.dat", "r+b");
+    if (fp == NULL){
+        printf("\nErro na criacao do arquivo\n!");
+    }
+
     pausaPrograma();
     menuDespesa();
 }

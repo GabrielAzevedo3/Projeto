@@ -26,6 +26,7 @@ struct despesa {
     int dia;
     int mes;
     int ano;
+    char status;
 };
 
 struct receita {
