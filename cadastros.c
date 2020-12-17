@@ -41,7 +41,7 @@ void cadastraCliente (void) {
 		scanf(" %50[^\n]", cli->email);
 	}
 
-    printf("\nDigite seu CPF: (apenas numeros): ");
+    printf("\nDigite seu CPF (apenas numeros): ");
     scanf(" %12[^\n]", cli->cpf);
     getchar();
     while(!(validaCpf(cli->cpf))){
@@ -118,7 +118,7 @@ void buscaCliente (void) {
         }
     }
     fclose(fp);
-      if(achou){
+    if(achou){
         exibeCliente(cli);
     } else{
         printf("\n%s nao esta cadastrado\n", procurado);
@@ -288,34 +288,27 @@ void exibeCliente(Cliente* cli){
 
 void cadastraDespesa (void) {
 
-    Despesa* des;
-    des = (Despesa*) malloc(sizeof(Despesa));
-
+    Despesa* des;    
     FILE *fp;
     fp = fopen("despesas.dat", "ab");
     if (fp == NULL){
         printf("\nErro na criacao do arquivo\n!");
     }
+    des = (Despesa*) malloc(sizeof(Despesa));
 
-
-    printf("\nDigite um valor: ");
+    printf("\nDigite um valor: R$ ");
     scanf("%10[^\n]",des->valor);
-    //getchar();
-    //validaValor(des->valor);
     while ((validaValor(des->valor))) {
         printf("\nValor invalido. Digite um valor: ");
         scanf("%10[^\n]",des->valor);
-        //getchar();
     }
 
     printf("\nDescricao: ");
     scanf(" %500[^\n]", des->descricao);
-    //des->descricao = lelinha();
     
-    printf("\nCategoria: ");
-    scanf(" %15[^\n]", des->categoria);
-    //des->categoria = lelinha();
-
+    printf("\nCategoria (Ex: alimentacao, compras, etc.): ");
+    scanf(" %20[^\n]", des->categoria);
+    
     printf("\nData (dd/mm/aaaa): ");
     scanf("%d/%d/%d",&des->dia, &des->mes, &des->ano);
     getchar();
@@ -324,14 +317,13 @@ void cadastraDespesa (void) {
         scanf("%d/%d/%d",&des->dia, &des->mes, &des->ano);
         getchar();
     }
+    
     des->status = '1';
 
     fwrite(des, sizeof(Despesa), 1, fp);
     fclose(fp);
     free(des);
-
     
-
     printf("\nDespesa cadastrada!\n");
     pausaPrograma();
     menuDespesa();
@@ -354,10 +346,10 @@ void listaDespesa (void) {
             printf("\n\n");
             printf(" $ $ $   LISTA DE DESPESAS   $ $ $   \n");
             printf(" $                               $   \n");
-            printf(" $    Valor: %s\n", des->valor);
+            printf(" $    Valor: R$ %s\n", des->valor);
             printf(" $    Descricao: %s\n", des->descricao);
             printf(" $    Categoria: %s\n", des->categoria);
-            printf(" $    Data de nascimento: %d/%d/%d\n", des->dia, des->mes, des->ano);
+            printf(" $    Data: %d/%d/%d\n", des->dia, des->mes, des->ano);          
             printf(" $                               $   \n");
             printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $  \n");
             printf("\n\n");
@@ -374,31 +366,174 @@ void buscaDespesa (void) {
 
     system("clear||cls");
     Despesa* des;
-    des = (Despesa*) malloc(sizeof(Despesa));
-
     FILE *fp;
+    int achou = 0;
+    char procurado[80];
     fp = fopen("despesas.dat", "r+b");
     if (fp == NULL){
-        printf("\nErro na criacao do arquivo\n!");
-    }
+        printf("\nErro na criacao do arquivo\n");
 
+    }
+    printf("\nInforme a descricao da despesa que esta buscando: ");
+    scanf(" %400[^\n]", procurado);
+    des = (Despesa*) malloc(sizeof(Despesa));
+    while ((!achou) && (fread(des, sizeof(Despesa), 1, fp))) {
+        if (strcmp(des->descricao, procurado) == 0 && (des->status == '1')) {
+            achou = 1;
+        }
+        
+    }
+    if(achou){    
+        exibeDespesa(des);
+    }else{
+            printf("\nNao tem despesas cadastradas com essa descricao\n");
+    }
+     
+
+    fclose(fp);
+    free(des);
+
+    getchar();
     pausaPrograma();
     menuDespesa();
 }
 void alteraDespesa (void) {
-    char opcao2;
-    printf("\nVocê entrou no Altera Despesa\n ");
+
+    system("clear||cls");
+    Despesa* des;
+    FILE *fp;
+    int achou = 0;
+    char resp;
+    char procurado[80];
+    fp = fopen("despesas.dat", "r+b");
+    if (fp == NULL){
+        printf("\nErro na criacao do arquivo\n");
+
+    }
+    printf("\nInforme a descricao da despesa que esta buscando: ");
+    scanf(" %400[^\n]", procurado);
+    des = (Despesa*) malloc(sizeof(Despesa));
+    while ((!achou) && (fread(des, sizeof(Despesa), 1, fp))) {
+        if (strcmp(des->descricao, procurado) == 0 && (des->status == '1')) {
+            achou = 1;
+        }
+        
+    }
+    if (achou) {
+        exibeDespesa(des);
+        printf("\nDeseja realmente alterar esse cliente? (s = sim n = nao) ");
+        scanf(" %c",&resp);
+        getchar();
+        if(resp == 's' || resp == 'S'){
+
+            printf("\nDigite um valor: R$ ");
+            scanf("%10[^\n]",des->valor);
+            while ((validaValor(des->valor))) {
+                printf("\nValor invalido. Digite um valor: ");
+                scanf("%10[^\n]",des->valor);
+            }
+
+            printf("\nDescricao: ");
+            scanf(" %500[^\n]", des->descricao);
+            
+            printf("\nCategoria (Ex: alimentacao, compras, etc.): ");
+            scanf(" %20[^\n]", des->categoria);
+            
+            printf("\nData (dd/mm/aaaa): ");
+            scanf("%d/%d/%d",&des->dia, &des->mes, &des->ano);
+            getchar();
+            while(!dataValida(des->dia, des->mes, des->ano)){
+                printf("\nData invalida! Digite novamente (dd/mm/aaaa): ");
+                scanf("%d/%d/%d",&des->dia, &des->mes, &des->ano);
+                getchar();
+            }
+            
+            des->status = '1';
+            fseek(fp, -1*sizeof(Despesa), SEEK_CUR);
+            fwrite(des, sizeof(Despesa), 1, fp);
+            printf("\nDespesa alterada\n");
+        }
+        else {
+            printf("\nOs dados nao foram alterados\n");
+        }
+    }
+    else {
+
+        printf("\nNenhum cliente com o CPF %s esta cadastrado\n", procurado);
+    }
+    
+    fclose(fp);
+    free(des);
 
     pausaPrograma();
     menuDespesa();
 }
 
 void deletaDespesa (void) {
-    char opcao2;
-    printf("\nVocê entrou no Deleta Despesa\n ");
 
+    system("clear||cls");
+    FILE* fp;
+    Despesa* des;
+    int achou = 0;
+    char resp;
+    char procurado[13];
+    fp = fopen("despesas.dat", "r+b");
+    if (fp == NULL){
+        printf("\nErro na abertura do arquivo\n!");
+    }
+
+    printf("\nInforme a descricao da despesa que deseja deletar: ");
+    scanf(" %400[^\n]", procurado);
+    des = (Despesa*) malloc(sizeof(Despesa));
+
+    while ((!achou) && (fread(des, sizeof(Despesa), 1, fp))) {
+        if (strcmp(des->descricao, procurado) == 0 && (des->status == '1')) {
+            achou = 1;
+        }
+    }
+    if(achou){
+
+        exibeDespesa(des);
+        printf("\nDeseja realmente deletar essa despesa? (s = sim n = nao) ");
+        scanf(" %c",&resp);
+        if(resp == 's' || resp == 'S'){
+
+            des->status = 'x';
+            fseek(fp, -1*sizeof(Despesa), SEEK_CUR);
+            fwrite(des, sizeof(Despesa), 1, fp);
+            printf("\nDespesa deletada\n");
+
+        } else{
+
+            printf("\nDespesa nao deletada\n");
+
+        }
+    } 
+    else{
+
+        printf("\nNenhuma despesa com a descricao %s esta cadastrado\n", procurado);
+    }
+    
+    fclose(fp);
+    free(des);
+
+    getchar();
     pausaPrograma();
     menuDespesa();
+}
+
+void exibeDespesa(Despesa* des){
+  
+    printf("\n\n");
+    printf(" $ $ $   LISTA DE DESPESAS   $ $ $   \n");
+    printf(" $                               $   \n");
+    printf(" $    Valor: R$ %s\n", des->valor);
+    printf(" $    Descricao: %s\n", des->descricao);
+    printf(" $    Categoria: %s\n", des->categoria);
+    printf(" $    Data de nascimento: %d/%d/%d\n", des->dia, des->mes, des->ano);
+    printf(" $                               $   \n");
+    printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $  \n");
+    printf("\n\n");
 }
 
 // funções do menu Receita
@@ -409,26 +544,12 @@ void cadastraReceita (void) {
     res = (Receita*) malloc(sizeof(Receita));
 
     FILE *fp;
-    fp = fopen("receitas.dat", "wb");
+    fp = fopen("receitas.dat", "ab");
     if (fp == NULL){
         printf("\nErro na criacao do arquivo\n!");
     }
-/*
-    printf("\nDigite um valor: ");
-    scanf("%10[^\n]",res->valorR);
-    while ((validaValor(res->valorR))) {
-        printf("\nValor invalido. Digite um valor: ");
-        scanf("%10[^\n]",res->valorR);
 
-    }
-
-    printf("\nDescricao: ");
-    scanf("% 500[^\n]", res->descricaoR);
-    
-    printf("\nCategoria: ");
-    scanf("% 15[^\n]", res->categoriaR);      */
-
-    printf("\nDigite um valor: ");
+    printf("\nDigite um valor: R$ ");
     scanf("%10[^\n]",res->valorR);
     while ((validaValor(res->valorR))) {
         printf("\nValor invalido. Digite um valor: ");
@@ -438,7 +559,7 @@ void cadastraReceita (void) {
     printf("\nDescricao: ");
     scanf(" %500[^\n]", res->descricaoR);
     
-    printf("\nCategoria: ");
+    printf("\nCategoria (Ex: emprestimos, salario, etc): ");
     scanf(" %15[^\n]", res->categoriaR);
 
     printf("\nData (dd/mm/aaaa): ");
@@ -449,6 +570,8 @@ void cadastraReceita (void) {
         scanf("%d/%d/%d",&res->dia, &res->mes, &res->ano);
         getchar();
     }
+    res->status = '1';
+
     fwrite(res, sizeof(Receita), 1, fp);
     fclose(fp);
     free(res);
@@ -470,51 +593,201 @@ void listaReceita (void) {
     if (fp == NULL){
         printf("\nErro na criacao do arquivo\n!");
     }
-    fread(res, sizeof(Receita), 1, fp);
+    while (fread(res, sizeof(Receita), 1, fp)) {
+        if (res->status == '1') {
  
-    system("clear||cls");
-    printf("\n\n");
-    printf(" $ $ $   LISTA DE RECEITAS   $ $ $   \n");
-    printf(" $                               $   \n");
-    printf(" $    Valor: %s\n", res->valorR);
-    printf(" $    Descricao: %s\n", res->descricaoR);
-    printf(" $    Categoria: %s\n", res->categoriaR);
-    printf(" $    Data de nascimento: %d/%d/%d\n", res->dia, res->mes, res->ano);
-    printf(" $                               $   \n");
-    printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $  \n");
-    printf("\n\n");
-
+            system("clear||cls");
+            printf("\n\n");
+            printf(" $ $ $   LISTA DE RECEITAS   $ $ $   \n");
+            printf(" $                               $   \n");
+            printf(" $    Valor: R$ %s\n", res->valorR);
+            printf(" $    Descricao: %s\n", res->descricaoR);
+            printf(" $    Categoria: %s\n", res->categoriaR);
+            printf(" $    Data de nascimento: %d/%d/%d\n", res->dia, res->mes, res->ano);
+            printf(" $                               $   \n");
+            printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $  \n");
+            printf("\n\n");
+        }
+    }
+    fclose(fp);
     free(res);
 
-    
-    fclose(fp);
-    
     pausaPrograma();
     menuReceita();
 }
 
 void buscaReceita (void) {
     
-    printf("\nVocê entrou no Busca Receita\n ");
+    system("clear||cls");
+    Receita* res;
+    int achou = 0;
+    char procurado[80];
+    FILE *fp;
+    fp = fopen("receitas.dat", "r+b");
+    if (fp == NULL){
+        printf("\nErro na criacao do arquivo\n!");
+    }
+    res = (Receita*) malloc(sizeof(Receita));
 
+    printf("\nInforme a descricao da receita que esta buscando: ");
+    scanf(" %400[^\n]", procurado);
+    while ((!achou) && (fread(res, sizeof(Receita), 1, fp))) {
+        if (strcmp(res->descricaoR, procurado) == 0 && (res->status == '1')) {
+            achou = 1;
+        }
+        
+    }
+    if(achou){    
+        exibeReceita(res);
+    }else{
+            printf("\nNao tem receitas cadastradas com essa descricao\n");
+    }
+     
+
+    fclose(fp);
+    free(res);
+
+    getchar();
     pausaPrograma();
     menuReceita();
 }
 void alteraReceita (void) {
     
-    printf("\nVocê entrou no Altera Receita\n ");
+    system("clear||cls");
+    Receita* res;
+    int achou = 0;
+    char procurado[80];
+    char resp;
+    FILE *fp;
+    fp = fopen("receitas.dat", "r+b");
+    if (fp == NULL){
+        printf("\nErro na criacao do arquivo\n!");
+    }
+    res = (Receita*) malloc(sizeof(Receita));
+
+    printf("\nInforme a descricao da receita que deseja alterar: ");
+    scanf(" %400[^\n]", procurado);
+    while ((!achou) && (fread(res, sizeof(Receita), 1, fp))) {
+        if (strcmp(res->descricaoR, procurado) == 0 && (res->status == '1')) {
+            achou = 1;
+        }
+        
+    }
+    if (achou) {
+        exibeReceita(res);
+        printf("\nDeseja realmente alterar esse cliente? (s = sim n = nao) ");
+        scanf(" %c",&resp);
+        getchar();
+        if(resp == 's' || resp == 'S'){
+
+            printf("\nDigite um valor: R$ ");
+            scanf("%10[^\n]",res->valorR);
+            while ((validaValor(res->valorR))) {
+                printf("\nValor invalido. Digite um valor: ");
+                scanf("%10[^\n]",res->valorR);
+            }
+
+            printf("\nDescricao: ");
+            scanf(" %500[^\n]", res->descricaoR);
+            
+            printf("\nCategoria (Ex: emprestimos, salario, etc): ");
+            scanf(" %15[^\n]", res->categoriaR);
+
+            printf("\nData (dd/mm/aaaa): ");
+            scanf("%d/%d/%d",&res->dia, &res->mes, &res->ano);
+            getchar();
+            while(!dataValida(res->dia, res->mes, res->ano)){
+                printf("\nData invalida! Digite novamente (dd/mm/aaaa): ");
+                scanf("%d/%d/%d",&res->dia, &res->mes, &res->ano);
+                getchar();
+            }
+            res->status = '1';
+            fseek(fp, -1*sizeof(Receita), SEEK_CUR);
+            fwrite(res, sizeof(Receita), 1, fp);
+            printf("\nReceita alterada\n");
+        }
+        else {
+            printf("\nOs dados nao foram alterados\n");
+        }
+    }
+    else {
+
+        printf("\nNenhuma receita encontrada com essa descricao\n", procurado);
+    }
+    
+    fclose(fp);
+    free(res);
 
     pausaPrograma();
     menuReceita();
 }
 
 void deletaReceita (void) {
-    
-    printf("\nVocê entrou no Deleta Receita\n ");
 
+    system("clear||cls");
+    Receita* res;
+    int achou = 0;
+    char procurado[80];
+    char resp;
+    FILE *fp;
+    fp = fopen("receitas.dat", "r+b");
+    if (fp == NULL){
+        printf("\nErro na criacao do arquivo\n!");
+    }
+    res = (Receita*) malloc(sizeof(Receita));
+
+    printf("\nInforme a descricao da receita que deseja deletar: ");
+    scanf(" %400[^\n]", procurado);
+    while ((!achou) && (fread(res, sizeof(Receita), 1, fp))) {
+        if (strcmp(res->descricaoR, procurado) == 0 && (res->status == '1')) {
+            achou = 1;
+        }
+        
+    }
+    if (achou) {
+        exibeReceita(res);
+        printf("\nDeseja realmente deletar esse cliente? (s = sim n = nao) ");
+        scanf(" %c",&resp);
+        getchar();
+        if(resp == 's' || resp == 'S'){
+
+            res->status = 'x';
+            fseek(fp, -1*sizeof(Receita), SEEK_CUR);
+            fwrite(res, sizeof(Receita), 1, fp);
+            printf("\nReceita deletada\n");
+
+        }
+        else {
+            printf("\nOs dados nao foram deletados\n");
+        }
+    }
+    else {
+
+        printf("\nNenhuma receita encontrada com essa descricao\\n", procurado);
+    }
+    
+    fclose(fp);
+    free(res);    
+    
+    getchar();
     pausaPrograma();
     menuReceita();
 }
+
+void exibeReceita(Receita* res){
+  
+    printf("\n\n");
+    printf(" $ $ $   LISTA DE DESPESAS   $ $ $   \n");
+    printf(" $                               $   \n");
+    printf(" $    Valor: R$ %s\n", res->valorR);
+    printf(" $    Descricao: %s\n", res->descricaoR);
+    printf(" $    Categoria: %s\n", res->categoriaR);
+    printf(" $    Data de nascimento: %d/%d/%d\n", res->dia, res->mes, res->ano);
+    printf(" $                               $   \n");
+    printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $  \n");
+    printf("\n\n");
+}
+
 
 // funções do menu Relatorio
 

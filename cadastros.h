@@ -22,11 +22,12 @@ struct despesa {
 
     char valor[10];
     char descricao[500];
-    char categoria[15];
+    char categoria[20];
     int dia;
     int mes;
     int ano;
     char status;
+
 };
 
 struct receita {
@@ -37,6 +38,7 @@ struct receita {
     int dia;
     int mes;
     int ano;
+    char status;
 
 };
 
@@ -63,6 +65,8 @@ void buscaDespesa (void);
 void alteraDespesa (void);
 void deletaDespesa (void);
 
+void exibeDespesa(Despesa*);
+
 // assinatura das funções do menu Receita
 
 void cadastraReceita (void);
@@ -70,6 +74,8 @@ void listaReceita (void);
 void buscaReceita (void);
 void alteraReceita (void);
 void deletaReceita (void);
+
+void exibeReceita(Receita*);
 
 // assinatura das funções do menu Relatorio 
 
