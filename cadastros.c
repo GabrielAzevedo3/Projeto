@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "menus.h"
-#include "cadastros.h"
+#include "assinaturas.h"
 #include <ctype.h>
 #include <string.h>
 
@@ -11,7 +10,6 @@ void cadastraCliente (void) {
 
     Cliente* cli;
     cli = (Cliente*) malloc(sizeof(Cliente));
-
     FILE *fp;
     fp = fopen("clientes.dat", "ab");
     if (fp == NULL){
@@ -66,9 +64,7 @@ void listaCliente (void) {
     system("clear||cls");
     FILE* fp;
     Cliente* cli;
-
     fp = fopen("clientes.dat", "rb");
-
     if (fp == NULL){
         printf("\nErro na abertura do arquivo\n!");
     }
@@ -103,7 +99,6 @@ void buscaCliente (void) {
     Cliente* cli;
     int achou = 0;
     char procurado[80];
-
     fp = fopen("clientes.dat", "rb");
     if (fp == NULL){
         printf("\nErro na abertura do arquivo\n!");
@@ -209,7 +204,6 @@ void alteraCliente (void) {
     fclose(fp);
     free(cli);
 
-    //getchar();
     pausaPrograma();
     menuCliente();
 }
@@ -296,11 +290,11 @@ void cadastraDespesa (void) {
     }
     des = (Despesa*) malloc(sizeof(Despesa));
 
-    printf("\nDigite um valor: R$ ");
-    scanf("%10[^\n]",des->valor);
+    printf("\nDigite um valor (apenas numeros): R$ ");
+    scanf(" %10[^\n]",des->valor);
     while ((validaValor(des->valor))) {
         printf("\nValor invalido. Digite um valor: ");
-        scanf("%10[^\n]",des->valor);
+        scanf(" %10[^\n]",des->valor);
     }
 
     printf("\nDescricao: ");
@@ -334,7 +328,6 @@ void listaDespesa (void) {
     system("clear||cls");
     Despesa* des;
     des = (Despesa*) malloc(sizeof(Despesa));
-
     FILE *fp;
     fp = fopen("despesas.dat", "rb");
     if (fp == NULL){
@@ -426,11 +419,11 @@ void alteraDespesa (void) {
         getchar();
         if(resp == 's' || resp == 'S'){
 
-            printf("\nDigite um valor: R$ ");
-            scanf("%10[^\n]",des->valor);
+            printf("\nDigite um valor (apenas numeros): R$ ");
+            scanf("% 10[^\n]",des->valor);
             while ((validaValor(des->valor))) {
                 printf("\nValor invalido. Digite um valor: ");
-                scanf("%10[^\n]",des->valor);
+                scanf(" %10[^\n]",des->valor);
             }
 
             printf("\nDescricao: ");
@@ -541,19 +534,18 @@ void exibeDespesa(Despesa* des){
 void cadastraReceita (void) {
 
     Receita* res;
-    res = (Receita*) malloc(sizeof(Receita));
-
     FILE *fp;
     fp = fopen("receitas.dat", "ab");
     if (fp == NULL){
         printf("\nErro na criacao do arquivo\n!");
     }
+    res = (Receita*) malloc(sizeof(Receita));
 
-    printf("\nDigite um valor: R$ ");
-    scanf("%10[^\n]",res->valorR);
+    printf("\nDigite um valor (apenas numeros): R$ ");
+    scanf(" %10[^\n]",res->valorR);
     while ((validaValor(res->valorR))) {
         printf("\nValor invalido. Digite um valor: ");
-        scanf("%10[^\n]",res->valorR);
+        scanf(" %10[^\n]",res->valorR);
     }
 
     printf("\nDescricao: ");
@@ -576,18 +568,15 @@ void cadastraReceita (void) {
     fclose(fp);
     free(res);
 
-
-
     printf("\nReceita cadastrada!\n");
     pausaPrograma();
     menuReceita();
 }
-
 void listaReceita (void) {
 
+    system("clear||cls");
     Receita* res;
     res = (Receita*) malloc(sizeof(Receita));
-
     FILE *fp;
     fp = fopen("receitas.dat", "rb");
     if (fp == NULL){
@@ -596,7 +585,6 @@ void listaReceita (void) {
     while (fread(res, sizeof(Receita), 1, fp)) {
         if (res->status == '1') {
  
-            system("clear||cls");
             printf("\n\n");
             printf(" $ $ $   LISTA DE RECEITAS   $ $ $   \n");
             printf(" $                               $   \n");
@@ -642,8 +630,6 @@ void buscaReceita (void) {
     }else{
             printf("\nNao tem receitas cadastradas com essa descricao\n");
     }
-     
-
     fclose(fp);
     free(res);
 
@@ -680,11 +666,11 @@ void alteraReceita (void) {
         getchar();
         if(resp == 's' || resp == 'S'){
 
-            printf("\nDigite um valor: R$ ");
-            scanf("%10[^\n]",res->valorR);
+            printf("\nDigite um valor (apenas numeros): R$ ");
+            scanf(" %10[^\n]",res->valorR);
             while ((validaValor(res->valorR))) {
                 printf("\nValor invalido. Digite um valor: ");
-                scanf("%10[^\n]",res->valorR);
+                scanf(" %10[^\n]",res->valorR);
             }
 
             printf("\nDescricao: ");
@@ -791,46 +777,327 @@ void exibeReceita(Receita* res){
 
 // funções do menu Relatorio
 
-void relatorioDiario (void) {
+NoDes* relatorioDespesaDireto (void) {
     
-    printf("\nVocê entrou no Relatorio Diario\n ");
+    FILE* fp;
+    Despesa* des;
+    NoDes* noDes;
+    NoDes* lista;
+    NoDes* ultimo;
 
-    pausaPrograma();
-    menuRelatorio();
+    lista = NULL;
+
+    fp = fopen("despesas.dat", "rb");
+    if (fp == NULL){
+        printf("\nErro na criacao do arquivo\n!");
+    }
+    des = (Despesa*) malloc(sizeof(Despesa));
+    while (fread(des, sizeof(Despesa), 1, fp)) {
+        if (des->status == '1') {
+
+        noDes = (NoDes*) malloc(sizeof(NoDes));
+        strcpy(noDes->valor, des->valor);
+        strcpy(noDes->descricao, des->descricao);
+        strcpy(noDes->categoria, des->categoria);
+        noDes->dia = des->dia;
+        noDes->mes = des->mes;
+        noDes->ano = des->ano;
+        noDes->status = des->status;
+        noDes->prox = NULL;
+        if (lista == NULL) {
+            lista = noDes;
+        } else {
+            ultimo->prox = noDes;
+        }
+        ultimo = noDes;
+
+
+        }
+    }
+    fclose(fp);
+    free(des);
+    return lista;
 }
 
-void relatorioSemanal (void) {
+NoDes* relatorioDespesaInvertido (void) {
     
-    printf("\nVocê entrou no Relatorio Semanal\n ");
+    FILE* fp;
+    Despesa* des;
+    NoDes* noDes;
+    NoDes* lista;
+    NoDes* ultimo;
 
-    pausaPrograma();
-    menuRelatorio();
+    lista = NULL;
+
+    fp = fopen("despesas.dat", "rb");
+    if (fp == NULL){
+        printf("\nErro na criacao do arquivo\n!");
+    }
+    des = (Despesa*) malloc(sizeof(Despesa));
+    while (fread(des, sizeof(Despesa), 1, fp)) {
+        if (des->status == '1') {
+
+        noDes = (NoDes*) malloc(sizeof(NoDes));
+        strcpy(noDes->valor, des->valor);
+        strcpy(noDes->descricao, des->descricao);
+        strcpy(noDes->categoria, des->categoria);
+        noDes->dia = des->dia;
+        noDes->mes = des->mes;
+        noDes->ano = des->ano;
+        noDes->status = des->status;
+        noDes->prox = lista;
+        lista = noDes;
+
+        }
+    }
+    fclose(fp);
+    free(des);
+    return lista;
 }
 
-void relatorioMensal (void) {
-    
-    printf("\nVocê entrou no Relatorio Mensal\n ");
+// O relatorio é gerado de acordo com o valor de cada despesa 
 
-    pausaPrograma();
-    menuRelatorio();
+NoDes* relatorioDespesaOrdenado(void) {
+  
+    FILE* fp;
+    Despesa* des;
+    NoDes* noDes;
+    NoDes* lista;
+
+    lista = NULL;
+
+    fp = fopen("despesas.dat", "rb");
+    if (fp == NULL){
+        printf("\nErro na criacao do arquivo\n!");
+    }
+    des = (Despesa*) malloc(sizeof(Despesa));
+    while (fread(des, sizeof(Despesa), 1, fp)) {
+        if (des->status == '1') {
+
+            noDes = (NoDes*) malloc(sizeof(NoDes));
+            strcpy(noDes->valor, des->valor);
+            strcpy(noDes->descricao, des->descricao);
+            strcpy(noDes->categoria, des->categoria);
+            noDes->dia = des->dia;
+            noDes->mes = des->mes;
+            noDes->ano = des->ano;
+            noDes->status = des->status;
+
+            char anoS[5];   
+            char mesS[3];
+            char diaS[3];
+
+            snprintf(anoS, sizeof(anoS), "%d", noDes->ano);
+            snprintf(mesS, sizeof(mesS), "%d", noDes->mes);
+            snprintf(diaS, sizeof(diaS), "%d", noDes->dia);
+
+            strcat(anoS,mesS);
+            strcat(anoS,diaS);
+
+            strcpy(noDes->dataCon, anoS );
+
+            if (lista == NULL) {
+                lista = noDes;
+                noDes->prox = NULL;
+            } else if (strcmp(noDes->dataCon,lista->dataCon) < 0) {
+                noDes->prox = lista;
+                lista = noDes;
+            } else {
+            NoDes* anter = lista;
+            NoDes* atual = lista->prox;
+                while ((atual != NULL) && strcmp(atual->dataCon,noDes->dataCon) < 0) {
+                anter = atual;
+                atual = atual->prox;
+                }
+                anter->prox = noDes;
+                noDes->prox = atual;
+                }
+            }
+    }
+    fclose(fp);
+    free(des);
+    return lista;
 }
 
-void relatorioAnual (void) {
-    
-    printf("\nVocê entrou no Relatorio Anual\n ");
+// funções dos relatorios das receitas
 
-    pausaPrograma();
-    menuRelatorio();
+NoRes* relatorioReceitaDireto (void) {
+    
+    FILE* fp;
+    Receita* res;
+    NoRes* noRes;
+    NoRes* listaR;
+    NoRes* ultimo;
+
+    listaR = NULL;
+
+    fp = fopen("receitas.dat", "rb");
+    if (fp == NULL){
+        printf("\nErro na criacao do arquivo\n!");
+    }
+    res = (Receita*) malloc(sizeof(Receita));
+    while (fread(res, sizeof(Receita), 1, fp)) {
+        if (res->status == '1') {
+
+        noRes = (NoRes*) malloc(sizeof(NoRes));
+        strcpy(noRes->valorR, res->valorR);
+        strcpy(noRes->descricaoR, res->descricaoR);
+        strcpy(noRes->categoriaR, res->categoriaR);
+        noRes->dia = res->dia;
+        noRes->mes = res->mes;
+        noRes->ano = res->ano;
+        noRes->status = res->status;
+        noRes->prox = NULL;
+        if (listaR == NULL) {
+            listaR = noRes;
+        } else {
+            ultimo->prox = noRes;
+        }
+        ultimo = noRes;
+
+
+        }
+    }
+    fclose(fp);
+    free(res);
+    return listaR;
 }
 
-void escolherPeriodo (void) {
+NoRes* relatorioReceitaInvertido (void) {
     
-    printf("\nVocê entrou no Escolher Periodo\n ");
+    FILE* fp;
+    Receita* res;
+    NoRes* noRes;
+    NoRes* listaR;
+    NoRes* ultimo;
 
-    pausaPrograma();
-    menuRelatorio();
+    listaR = NULL;
+
+    fp = fopen("receitas.dat", "rb");
+    if (fp == NULL){
+        printf("\nErro na criacao do arquivo\n!");
+    }
+    res = (Receita*) malloc(sizeof(Receita));
+    while (fread(res, sizeof(Receita), 1, fp)) {
+        if (res->status == '1') {
+
+        noRes = (NoRes*) malloc(sizeof(NoRes));
+        strcpy(noRes->valorR, res->valorR);
+        strcpy(noRes->descricaoR, res->descricaoR);
+        strcpy(noRes->categoriaR, res->categoriaR);
+        noRes->dia = res->dia;
+        noRes->mes = res->mes;
+        noRes->ano = res->ano;
+        noRes->status = res->status;
+        noRes->prox = listaR;
+        listaR = noRes;
+        }
+    }
+    fclose(fp);
+    free(res);
+    return listaR;
 }
 
+NoRes* relatorioReceitaOrdenado (void) {
+    
+    FILE* fp;
+    Receita* res;
+    NoRes* noRes;
+    NoRes* listaR;
+    NoRes* ultimo;
+
+    listaR = NULL;
+
+    fp = fopen("receitas.dat", "rb");
+    if (fp == NULL){
+        printf("\nErro na criacao do arquivo\n!");
+    }
+    res = (Receita*) malloc(sizeof(Receita));
+    while (fread(res, sizeof(Receita), 1, fp)) {
+        if (res->status == '1') {
+
+            noRes = (NoRes*) malloc(sizeof(NoRes));
+            strcpy(noRes->valorR, res->valorR);
+            strcpy(noRes->descricaoR, res->descricaoR);
+            strcpy(noRes->categoriaR, res->categoriaR);
+            noRes->dia = res->dia;
+            noRes->mes = res->mes;
+            noRes->ano = res->ano;
+            noRes->status = res->status;
+
+            char anoS[5];   
+            char mesS[3];
+            char diaS[3];
+
+            snprintf(anoS, sizeof(anoS), "%d", noRes->ano);
+            snprintf(mesS, sizeof(mesS), "%d", noRes->mes);
+            snprintf(diaS, sizeof(diaS), "%d", noRes->dia);
+
+            strcat(anoS,mesS);
+            strcat(anoS,diaS);
+
+            strcpy(noRes->dataCon, anoS );
+
+            if (listaR == NULL) {
+                listaR = noRes;
+                noRes->prox = NULL;
+            } else if (strcmp(noRes->valorR,listaR->valorR) < 0) {
+                noRes->prox = listaR;
+                listaR = noRes;
+            } else {
+            NoRes* anter = listaR;
+            NoRes* atual = listaR->prox;
+                while ((atual != NULL) && strcmp(atual->valorR,noRes->valorR) < 0) {
+                anter = atual;
+                atual = atual->prox;
+                }
+                anter->prox = noRes;
+                noRes->prox = atual;
+                }
+            }
+    }
+    fclose(fp);
+    free(res);
+    return listaR;
+}
+
+
+
+void exibeListaDespesa(NoDes* lista) {
+
+  while (lista != NULL) {
+    printf("\n\n");
+    printf(" $ $ $   LISTA DE DESPESAS   $ $ $   \n");
+    printf(" $                               $   \n");
+    printf(" $    Valor: R$ %s\n", lista->valor);
+    printf(" $    Descricao: %s\n", lista->descricao);
+    printf(" $    Categoria: %s\n", lista->categoria);
+    printf(" $    Data: %d/%d/%d\n", lista->dia, lista->mes, lista->ano);          
+    printf(" $                               $   \n");
+    printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $  \n");
+    printf("\n\n");
+    lista = lista->prox;
+    
+  }
+}
+
+void exibeListaReceita(NoRes* listaR) {
+
+  while (listaR != NULL) {
+    printf("\n\n");
+    printf(" $ $ $   LISTA DE RECEITAS   $ $ $   \n");
+    printf(" $                               $   \n");
+    printf(" $    Valor: R$ %s\n", listaR->valorR);
+    printf(" $    Descricao: %s\n", listaR->descricaoR);
+    printf(" $    Categoria: %s\n", listaR->categoriaR);
+    printf(" $    Data: %d/%d/%d\n", listaR->dia, listaR->mes, listaR->ano);          
+    printf(" $                               $   \n");
+    printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $  \n");
+    printf("\n\n");
+    listaR = listaR->prox;
+    
+  }
+}
 // função do menu Sobre
 
 void pausaPrograma(void) {

@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "cadastros.h"
+#include "assinaturas.h"
 #include <stdlib.h>
 
 
@@ -148,18 +148,21 @@ char menuReceita (void) {
 char menuRelatorio (void) {
 
     char opcao;
+    NoDes* lista;
+    NoRes* listaR;
     system("clear||cls");
     printf("\n\n");
-    printf(" $ $ $   MENU RELATORIOS   $ $ $   \n");
-    printf(" $                             $   \n");
-    printf(" $     1. RELATORIO DIARIO     $   \n");
-    printf(" $     2. RELATORIO SEMANAL    $   \n");
-    printf(" $     3. RELATORIO MENSAL     $   \n");
-    printf(" $     4. RELATORIO ANUAL      $   \n");
-    printf(" $     5. ESCOLHER PERIODO     $   \n");
-    printf(" $     0. MENU PRINCIPAL       $   \n");
-    printf(" $                             $   \n");
-    printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $   \n");
+    printf(" $ $ $       MENU RELATORIOS       $ $ $   \n");
+    printf(" $                                     $   \n");
+    printf(" $     1. LISTA DIRETA DE DESPESAS     $   \n");
+    printf(" $     2. LISTA INVERTIDA DE DESPESAS  $   \n");
+    printf(" $     3. LISTA ORDENADA DE DESPESAS   $   \n");
+    printf(" $     4. LISTA DIRETA DE RECEITAS     $   \n");
+    printf(" $     5. LISTA INVERTIDA DE RECEITAS  $   \n");
+    printf(" $     6. LISTA ORDENADA DE RECEITAS   $   \n");    
+    printf(" $     0. MENU PRINCIPAL               $   \n");
+    printf(" $                                     $   \n");
+    printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $   \n");
 	printf("\n\n");
     printf("\nEscolha sua opcao: ");
     scanf("%c", &opcao);
@@ -167,20 +170,34 @@ char menuRelatorio (void) {
 
     switch (opcao) {
         case '1':
-            relatorioDiario();
+            lista = relatorioDespesaDireto();
+                    exibeListaDespesa(lista);
+                    pausaPrograma();
             break;
         case '2':
-            relatorioSemanal();
+            lista = relatorioDespesaInvertido();
+                    exibeListaDespesa(lista);
+                    pausaPrograma();
             break;
         case '3':
-            relatorioMensal();
+            lista = relatorioDespesaOrdenado();
+                    exibeListaDespesa(lista);
+                    pausaPrograma();
             break;
         case '4':
-            relatorioAnual();
+            listaR = relatorioReceitaDireto();
+                    exibeListaReceita(listaR);
+                    pausaPrograma();
             break;
         case '5':
-            escolherPeriodo();
+            listaR = relatorioReceitaInvertido();
+                    exibeListaReceita(listaR);
+                    pausaPrograma();
             break;
+        case '6':
+            listaR = relatorioReceitaOrdenado();
+                    exibeListaReceita(listaR);
+                    pausaPrograma();
     }
     return opcao;
 }
@@ -250,5 +267,5 @@ void logoBoanoite(void) {
     printf(" $                                               $   \n");
     printf(" $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $   \n");
     printf("\n\n");
-    
+
 }

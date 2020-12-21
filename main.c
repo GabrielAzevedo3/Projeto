@@ -1,6 +1,5 @@
 #include <stdio.h>
-#include "menus.h"
-#include "cadastros.h"
+#include "assinaturas.h"
 
 int main (void) {
     char opcao;

@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "menus.h"
-#include "cadastros.h"
+#include "assinaturas.h"
 #include <ctype.h>
 #include <string.h>
 #include <time.h>
@@ -17,20 +16,14 @@ int validaNome(char *nome) {
     for (int i = 0; i < tam; i++)
     {
         letra = nome[i];
-        if (letra == '!' || letra == '@' || letra == '#' || letra == '$' || letra == '%' 
-         || letra == '&' || letra == '*' || letra == '(' || letra == ')' || letra == '"'
-         || letra == '+' || letra == '-' || letra == '_' || letra == '^' || letra == '~'
-         || letra == '.' || letra == ',' || letra == '[' || letra == ']' || letra == '{'
-         || letra == '}' || letra == ':' || letra == ';' || letra == '=' || letra == '>'
-         || letra == '>' || letra == '?' || letra == '|' || letra == '/' ) {
-          return 1;
-        }
-        else if (isdigit(letra)) {
+        if (isdigit(letra)) {
             return 1;
         }
         else if (isalpha(letra)) {
+            continue;
         }
         else if (isspace(letra)) {
+            continue;
         }
     }
     return 0;
@@ -177,16 +170,14 @@ char inttochar(int n){
 int validaValor (char *valor) {
   int tam = strlen(valor);
   char verifica;
-  for (int i; i < tam; i++) {
+  for (int i = 0; i < tam; i++) {
     verifica = valor[i];
 
-    if (isalpha(verifica)) {
-      return 1;
+    if (isdigit(verifica)) {
+      continue;
     }
-    else if (isspace(verifica)) {
+    else {
       return 1;
-    }
-    else if (isdigit(verifica)) {
     }
   }
   return 0;
