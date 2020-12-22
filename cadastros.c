@@ -1106,3 +1106,4 @@ void pausaPrograma(void) {
     getchar();
 
 }
+
